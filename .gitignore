@@ -2,6 +2,9 @@ BOORUI-site-ready-for-github-*.zip
 tools/
 .codex-git/
 .deploy-git/
+github-push-log.txt
+PUSH-BOORUI-*-LOGGED.bat
+PUSH-BOORUI-LOGGED.bat
 
 .DS_Store
 Thumbs.db

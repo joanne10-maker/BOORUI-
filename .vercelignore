@@ -3,6 +3,9 @@
 .deploy-git
 .agents
 .codex
+github-push-log.txt
+PUSH-BOORUI-*-LOGGED.bat
+PUSH-BOORUI-LOGGED.bat
 tools
 *.zip
 *.bat
