@@ -1,0 +1,10 @@
+BOORUI-site-ready-for-github-*.zip
+tools/
+.codex-git/
+.deploy-git/
+
+.DS_Store
+Thumbs.db
+*.log
+.cache/
+node_modules/

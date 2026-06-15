@@ -1,0 +1,12 @@
+.git
+.codex-git
+.deploy-git
+.agents
+.codex
+tools
+*.zip
+*.bat
+node_modules
+.next
+out
+dist

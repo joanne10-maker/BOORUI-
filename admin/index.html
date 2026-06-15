@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BOORUI Admin | Products & Blog Editor</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" href="../assets/boorui-logo.png" />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <aside class="admin-sidebar">
+      <a class="admin-brand" href="../index.html" aria-label="Back to BOORUI website">
+        <img src="../assets/boorui-logo.png" alt="BOORUI logo" />
+        <span>Admin Studio</span>
+      </a>
+      <nav aria-label="Admin sections">
+        <button class="nav-item active" type="button" data-panel-target="products">
+          <span aria-hidden="true">+</span>
+          <strong>上新品</strong>
+        </button>
+        <button class="nav-item" type="button" data-panel-target="blogs">
+          <span aria-hidden="true">B</span>
+          <strong>编辑博客</strong>
+        </button>
+        <button class="nav-item" type="button" data-panel-target="library">
+          <span aria-hidden="true">#</span>
+          <strong>内容库</strong>
+        </button>
+      </nav>
+      <div class="admin-contact-card">
+        <img src="../assets/joanne-ip.png" alt="Joanne Wu" />
+        <div>
+          <span>BOORUI Contact</span>
+          <strong>Joanne Wu</strong>
+          <a href="mailto:joannexiaoxiao@gmail.com">joannexiaoxiao@gmail.com</a>
+        </div>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <div>
+          <p>BOORUI 独立站后台</p>
+          <h1>新品发布与博客编辑工作台</h1>
+        </div>
+        <div class="topbar-actions">
+          <button class="ghost-button" type="button" id="exportJson">导出 JSON</button>
+          <a class="primary-button" href="../blog/index.html">查看 Blog</a>
+        </div>
+      </header>
+
+      <section class="status-grid" aria-label="Admin status">
+        <article>
+          <span>Products</span>
+          <strong id="productCount">0</strong>
+          <p>本地新品草稿</p>
+        </article>
+        <article>
+          <span>Blog</span>
+          <strong id="blogCount">0</strong>
+          <p>本地博客草稿</p>
+        </article>
+        <article>
+          <span>SEO Ready</span>
+          <strong id="seoScore">0%</strong>
+          <p>当前编辑完整度</p>
+        </article>
+      </section>
+
+      <section class="admin-panel active" data-panel="products">
+        <div class="editor-grid">
+          <form class="editor-card" id="productForm">
+            <div class="card-head">
+              <div>
+                <span>New Product</span>
+                <h2>上新产品</h2>
+              </div>
+              <button class="ghost-button small" type="reset">清空</button>
+            </div>
+            <div class="form-grid">
+              <label>
+                产品英文名称
+                <input name="name" required placeholder="Silicone Apple Watch Band" />
+              </label>
+              <label>
+                URL Slug
+                <input name="slug" placeholder="silicone-apple-watch-band" />
+              </label>
+              <label>
+                产品分类
+                <select name="category">
+                  <option>Apple Watch Bands</option>
+                  <option>Samsung Watch Bands</option>
+                  <option>Garmin Watch Bands</option>
+                  <option>Mi Band Straps</option>
+                  <option>3C Accessories</option>
+                </select>
+              </label>
+              <label>
+                材质
+                <select name="material">
+                  <option>Silicone</option>
+                  <option>Leather</option>
+                  <option>Nylon</option>
+                  <option>Metal</option>
+                  <option>TPU</option>
+                </select>
+              </label>
+              <label>
+                MOQ
+                <input name="moq" placeholder="300 pcs / color" />
+              </label>
+              <label>
+                交期
+                <input name="leadTime" placeholder="7-15 days after sample confirmation" />
+              </label>
+              <label class="wide">
+                兼容型号
+                <input name="models" placeholder="Apple Watch Series 10/9/8/SE, 38-49mm" />
+              </label>
+              <label class="wide">
+                图片路径
+                <input name="image" placeholder="assets/products/hero-collection.jpg" />
+              </label>
+              <label class="wide">
+                产品卖点
+                <textarea name="features" rows="4" placeholder="Soft touch silicone&#10;Custom logo available&#10;Private label packaging"></textarea>
+              </label>
+              <label class="wide">
+                SEO 描述
+                <textarea name="description" rows="4" placeholder="Factory direct smartwatch band supplier for OEM/ODM and private label wholesale buyers."></textarea>
+              </label>
+            </div>
+            <div class="form-actions">
+              <button class="primary-button" type="submit">保存新品草稿</button>
+              <button class="ghost-button" type="button" id="copyProductHtml">复制产品 HTML</button>
+            </div>
+          </form>
+
+          <aside class="preview-card">
+            <div class="card-head">
+              <div>
+                <span>Live Preview</span>
+                <h2>产品预览</h2>
+              </div>
+            </div>
+            <article class="product-preview" id="productPreview"></article>
+          </aside>
+        </div>
+      </section>
+
+      <section class="admin-panel" data-panel="blogs">
+        <div class="editor-grid">
+          <form class="editor-card" id="blogForm">
+            <div class="card-head">
+              <div>
+                <span>Blog Editor</span>
+                <h2>编辑博客</h2>
+              </div>
+              <button class="ghost-button small" type="reset">清空</button>
+            </div>
+            <div class="form-grid">
+              <label class="wide">
+                Blog Title
+                <input name="title" required placeholder="How to Choose a Smartwatch Band Supplier" />
+              </label>
+              <label>
+                URL Slug
+                <input name="slug" placeholder="how-to-choose-smartwatch-band-supplier" />
+              </label>
+              <label>
+                Target Keyword
+                <input name="keyword" placeholder="OEM smartwatch band supplier" />
+              </label>
+              <label class="wide">
+                Meta Description
+                <textarea name="meta" rows="3" placeholder="A practical sourcing guide for B2B buyers comparing OEM smartwatch band suppliers."></textarea>
+              </label>
+              <label class="wide">
+                Article Body
+                <textarea name="body" rows="12" placeholder="## Introduction&#10;Write the article section by section..."></textarea>
+              </label>
+              <label>
+                CTA Button
+                <select name="cta">
+                  <option>Get a Quote</option>
+                  <option>Ask for Product Catalog</option>
+                  <option>Send Your Requirements</option>
+                  <option>Contact Joanne</option>
+                </select>
+              </label>
+              <label>
+                Author
+                <input name="author" value="Joanne Wu" />
+              </label>
+            </div>
+            <div class="form-actions">
+              <button class="primary-button" type="submit">保存博客草稿</button>
+              <button class="ghost-button" type="button" id="copyBlogMarkdown">复制 Markdown</button>
+            </div>
+          </form>
+
+          <aside class="preview-card">
+            <div class="card-head">
+              <div>
+                <span>SEO Preview</span>
+                <h2>博客预览</h2>
+              </div>
+            </div>
+            <article class="blog-preview" id="blogPreview"></article>
+          </aside>
+        </div>
+      </section>
+
+      <section class="admin-panel" data-panel="library">
+        <div class="library-layout">
+          <article class="library-card">
+            <div class="card-head">
+              <div>
+                <span>Draft Library</span>
+                <h2>新品草稿</h2>
+              </div>
+            </div>
+            <div class="draft-list" id="productDrafts"></div>
+          </article>
+          <article class="library-card">
+            <div class="card-head">
+              <div>
+                <span>Draft Library</span>
+                <h2>博客草稿</h2>
+              </div>
+            </div>
+            <div class="draft-list" id="blogDrafts"></div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="admin.js"></script>
+  </body>
+</html>

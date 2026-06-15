@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BOORUI Local Preview</title>
+    <style>
+      :root {
+        --bg: #f7f7f4;
+        --ink: #111111;
+        --muted: #66635d;
+        --line: #dedbd0;
+        --panel: #ffffff;
+        --accent: #9b7a3d;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        line-height: 1.5;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .shell {
+        width: min(1180px, calc(100% - 36px));
+        margin: 0 auto;
+        padding: 42px 0 56px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 28px;
+        align-items: end;
+        padding: clamp(28px, 5vw, 56px);
+        background:
+          linear-gradient(135deg, rgba(17, 17, 17, 0.96), rgba(42, 37, 29, 0.94)),
+          radial-gradient(circle at 18% 0%, rgba(197, 156, 80, 0.22), transparent 34%);
+        color: #fff;
+        border-radius: 10px;
+      }
+
+      .brand {
+        display: block;
+        width: 150px;
+        margin-bottom: 34px;
+        padding: 12px 14px;
+        background: #fff;
+        border-radius: 8px;
+      }
+
+      .brand img {
+        display: block;
+        width: 100%;
+      }
+
+      h1 {
+        max-width: 760px;
+        margin: 0;
+        font-size: clamp(38px, 6vw, 76px);
+        line-height: 0.98;
+        letter-spacing: 0;
+      }
+
+      .hero p {
+        max-width: 640px;
+        margin: 20px 0 0;
+        color: #ded8cb;
+        font-size: 18px;
+      }
+
+      .primary-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0 22px;
+        background: #f4d390;
+        color: #111;
+        border-radius: 5px;
+        font-weight: 850;
+        white-space: nowrap;
+      }
+
+      .section {
+        margin-top: 34px;
+      }
+
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        align-items: end;
+        margin-bottom: 14px;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: clamp(26px, 3vw, 38px);
+        line-height: 1;
+      }
+
+      .section-head p {
+        max-width: 520px;
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .card {
+        min-height: 154px;
+        padding: 22px;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        transition:
+          transform 160ms ease,
+          border-color 160ms ease,
+          box-shadow 160ms ease;
+      }
+
+      .card:hover {
+        transform: translateY(-2px);
+        border-color: rgba(155, 122, 61, 0.45);
+        box-shadow: 0 18px 44px rgba(22, 22, 18, 0.08);
+      }
+
+      .card span {
+        display: block;
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 850;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .card strong {
+        display: block;
+        margin-top: 14px;
+        font-size: 20px;
+        line-height: 1.12;
+      }
+
+      .card small {
+        display: block;
+        margin-top: 12px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .note {
+        margin-top: 28px;
+        padding: 18px 20px;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: var(--muted);
+      }
+
+      @media (max-width: 900px) {
+        .hero,
+        .section-head {
+          grid-template-columns: 1fr;
+          display: grid;
+        }
+
+        .grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .primary-link {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .shell {
+          width: min(100% - 28px, 420px);
+          padding-top: 22px;
+        }
+
+        .hero {
+          padding: 24px;
+        }
+
+        h1 {
+          font-size: 38px;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div>
+          <a class="brand" href="index.html" aria-label="Open BOORUI home page">
+            <img src="assets/boorui-logo.png" alt="BOORUI logo" />
+          </a>
+          <h1>BOORUI Local Preview Page</h1>
+          <p>Use this page as a local browsing entrance for the BOORUI independent site. All links open the local HTML pages in this folder.</p>
+        </div>
+        <a class="primary-link" href="index.html">Open Home Page</a>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Main Pages</h2>
+          <p>Start from the homepage, catalog download, company profile or inquiry page.</p>
+        </div>
+        <div class="grid">
+          <a class="card" href="index.html"><span>Home</span><strong>BOORUI Homepage</strong><small>Full independent site landing page.</small></a>
+          <a class="card" href="products/"><span>Products</span><strong>Product Collections</strong><small>Smartwatch band product overview.</small></a>
+          <a class="card" href="about/"><span>Company</span><strong>About BOORUI</strong><small>Company background and sourcing position.</small></a>
+          <a class="card" href="contact/"><span>Contact</span><strong>Contact BOORUI</strong><small>Inquiry and buyer contact path.</small></a>
+          <a class="card" href="download/"><span>Catalog</span><strong>Download Catalog</strong><small>BOORUI 2026 English brochure page.</small></a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Device Lines</h2>
+          <p>Browse pages by smartwatch compatibility.</p>
+        </div>
+        <div class="grid">
+          <a class="card" href="apple-watch-bands/"><span>Apple</span><strong>Apple Watch Bands</strong><small>Wholesale and private label Apple Watch bands.</small></a>
+          <a class="card" href="samsung-watch-bands/"><span>Samsung</span><strong>Samsung Watch Bands</strong><small>Galaxy Watch compatible strap sourcing.</small></a>
+          <a class="card" href="garmin-watch-bands/"><span>Garmin</span><strong>Garmin Watch Bands</strong><small>20mm, 22mm and 26mm sport bands.</small></a>
+          <a class="card" href="mi-band-straps/"><span>Xiaomi</span><strong>Mi Band Straps</strong><small>Mi Band and Redmi Watch strap options.</small></a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Materials</h2>
+          <p>Open the SEO pages organized by material category.</p>
+        </div>
+        <div class="grid">
+          <a class="card" href="silicone-watch-bands/"><span>Sport</span><strong>Silicone Watch Bands</strong><small>High-volume sport and daily-wear styles.</small></a>
+          <a class="card" href="leather-watch-bands/"><span>Premium</span><strong>Leather Watch Bands</strong><small>Leather, cowhide and premium collections.</small></a>
+          <a class="card" href="nylon-watch-bands/"><span>Comfort</span><strong>Nylon Watch Bands</strong><small>Woven and outdoor strap directions.</small></a>
+          <a class="card" href="metal-watch-bands/"><span>Fashion</span><strong>Metal Watch Bands</strong><small>Steel, jewelry and higher-value styles.</small></a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>B2B Sourcing</h2>
+          <p>Pages for wholesale, OEM, ODM, custom and private label buyers.</p>
+        </div>
+        <div class="grid">
+          <a class="card" href="oem-odm-watch-bands/"><span>OEM / ODM</span><strong>OEM & ODM Watch Bands</strong><small>Custom coordination and product development support.</small></a>
+          <a class="card" href="private-label-watch-bands/"><span>Private Label</span><strong>Private Label Watch Bands</strong><small>Branding and packaging direction.</small></a>
+          <a class="card" href="custom-watch-band-manufacturer/"><span>Custom</span><strong>Custom Manufacturer</strong><small>Custom smartwatch band sourcing page.</small></a>
+          <a class="card" href="wholesale-smartwatch-bands/"><span>Wholesale</span><strong>Wholesale Smartwatch Bands</strong><small>Bulk order and distributor sourcing.</small></a>
+          <a class="card" href="apple-watch-band-manufacturer/"><span>Manufacturer</span><strong>Apple Watch Band Manufacturer</strong><small>High-intent Apple Watch manufacturer page.</small></a>
+          <a class="card" href="private-label-watch-band-supplier/"><span>Supplier</span><strong>Private Label Supplier</strong><small>Private label supplier page for brand owners.</small></a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Country Pages</h2>
+          <p>Local SEO landing pages for priority export markets.</p>
+        </div>
+        <div class="grid">
+          <a class="card" href="usa/watch-band-supplier/"><span>USA</span><strong>USA Watch Band Supplier</strong><small>US brands, sellers and importers.</small></a>
+          <a class="card" href="germany/watch-band-supplier/"><span>Germany</span><strong>Germany Watch Band Supplier</strong><small>German e-commerce and distribution buyers.</small></a>
+          <a class="card" href="uk/watch-band-supplier/"><span>UK</span><strong>UK Watch Band Supplier</strong><small>UK brands and wholesale buyers.</small></a>
+          <a class="card" href="uae/watch-band-supplier/"><span>UAE</span><strong>UAE Watch Band Supplier</strong><small>UAE import and retail buyers.</small></a>
+          <a class="card" href="saudi-arabia/watch-band-supplier/"><span>Saudi Arabia</span><strong>Saudi Arabia Supplier</strong><small>Saudi importers and retailers.</small></a>
+          <a class="card" href="australia/watch-band-supplier/"><span>Australia</span><strong>Australia Supplier</strong><small>Australian brands and distributors.</small></a>
+          <a class="card" href="indonesia/watch-band-supplier/"><span>Indonesia</span><strong>Indonesia Supplier</strong><small>Indonesian distributors and online sellers.</small></a>
+        </div>
+      </section>
+
+      <p class="note">Tip: this page is for local review only. It can be deleted before publishing if you do not want it included in the live website.</p>
+    </main>
+  </body>
+</html>

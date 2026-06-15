@@ -1,0 +1,19 @@
+{
+  "socialLinks": [
+    {
+      "name": "Facebook",
+      "url": "https://www.facebook.com/boorui",
+      "icon": "facebook"
+    },
+    {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/boorui",
+      "icon": "instagram"
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/company/boorui",
+      "icon": "linkedin"
+    }
+  ]
+}
