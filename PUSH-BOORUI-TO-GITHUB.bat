@@ -2,9 +2,9 @@
 setlocal
 cd /d "%~dp0"
 
-set "GIT=%~dp0tools\git-7zr\cmd\git.exe"
-set "DEPLOY_GIT=%~dp0.deploy-git"
-set "WORKTREE=%~dp0"
+for %%I in ("%~dp0.") do set "WORKTREE=%%~fI"
+set "GIT=%WORKTREE%\tools\git-7zr\cmd\git.exe"
+set "DEPLOY_GIT=%WORKTREE%\.deploy-git"
 set "REMOTE_URL=https://github.com/joanne10-maker/BOORUI-.git"
 
 if not exist "%GIT%" (
