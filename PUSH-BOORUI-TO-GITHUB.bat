@@ -21,7 +21,7 @@ echo %REMOTE_URL%
 echo.
 
 if not exist "%DEPLOY_GIT%\HEAD" (
-  "%GIT%" --git-dir="%DEPLOY_GIT%" --work-tree="%WORKTREE%" init -b main
+  "%GIT%" --git-dir "%DEPLOY_GIT%" --work-tree "%WORKTREE%" init -b main
   if errorlevel 1 (
     echo.
     echo Failed to initialize deploy git database.
@@ -30,13 +30,13 @@ if not exist "%DEPLOY_GIT%\HEAD" (
   )
 )
 
-"%GIT%" --git-dir="%DEPLOY_GIT%" --work-tree="%WORKTREE%" config user.name "BOORUI Site Builder"
-"%GIT%" --git-dir="%DEPLOY_GIT%" --work-tree="%WORKTREE%" config user.email "joannexiaoxiao@gmail.com"
-"%GIT%" --git-dir="%DEPLOY_GIT%" --work-tree="%WORKTREE%" add -A
+"%GIT%" --git-dir "%DEPLOY_GIT%" --work-tree "%WORKTREE%" config user.name "BOORUI Site Builder"
+"%GIT%" --git-dir "%DEPLOY_GIT%" --work-tree "%WORKTREE%" config user.email "joannexiaoxiao@gmail.com"
+"%GIT%" --git-dir "%DEPLOY_GIT%" --work-tree "%WORKTREE%" add -A
 
-"%GIT%" --git-dir="%DEPLOY_GIT%" --work-tree="%WORKTREE%" diff --cached --quiet
+"%GIT%" --git-dir "%DEPLOY_GIT%" --work-tree "%WORKTREE%" diff --cached --quiet
 if errorlevel 1 (
-  "%GIT%" --git-dir="%DEPLOY_GIT%" --work-tree="%WORKTREE%" commit -m "Update BOORUI website"
+  "%GIT%" --git-dir "%DEPLOY_GIT%" --work-tree "%WORKTREE%" commit -m "Update BOORUI website"
 ) else (
   echo No new file changes to commit.
 )
@@ -46,7 +46,7 @@ echo Pushing BOORUI website to GitHub...
 echo If GitHub asks you to sign in or authorize, please approve it in the browser window.
 echo.
 
-"%GIT%" --git-dir="%DEPLOY_GIT%" --work-tree="%WORKTREE%" -c http.sslBackend=openssl -c http.version=HTTP/1.1 -c credential.helper=manager push "%REMOTE_URL%" refs/heads/main:refs/heads/main
+"%GIT%" --git-dir "%DEPLOY_GIT%" --work-tree "%WORKTREE%" -c http.sslBackend=openssl -c http.version=HTTP/1.1 -c credential.helper=manager push "%REMOTE_URL%" refs/heads/main:refs/heads/main
 
 if errorlevel 1 (
   echo.
