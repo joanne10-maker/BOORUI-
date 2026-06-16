@@ -6,6 +6,7 @@ const contactPhone = "+86-13632456845";
 const whatsappUrl = "https://wa.me/8613632456845";
 const whatsappFloatUrl = "https://wa.me/8613632456845?text=Hello%2C%20I%20am%20interested%20in%20your%20products.%20Please%20send%20me%20more%20details.";
 const alibabaUrl = "https://boorui.en.alibaba.com/";
+const siteUrl = "https://boorui.vercel.app";
 const socialLinks = [
   {
     name: "Facebook",
@@ -76,6 +77,17 @@ const pages = [
     bullets: ["20mm, 22mm and 26mm quick-release options", "Nylon and silicone sport directions", "Outdoor and daily sports scenes", "MOQ-friendly product selection"],
   },
   {
+    slug: "huawei-watch-bands",
+    title: "Huawei Watch Bands Supplier",
+    h1: "Huawei Watch Bands for Wholesale and OEM/ODM Buyers",
+    description:
+      "BOORUI supplies Huawei Watch and Huawei Band compatible straps with silicone, leather, nylon, metal, OEM/ODM and private label support.",
+    keywords: "huawei watch bands, huawei band strap supplier, huawei smartwatch band wholesale",
+    intro:
+      "BOORUI supports Huawei Watch and Huawei Band accessory sourcing for buyers who need wearable strap programs across sport, daily, fashion and private label directions.",
+    bullets: ["Huawei Watch and Huawei Band strap directions", "Silicone, leather, nylon and metal material options", "Retail-ready styles for online sellers and distributors", "OEM/ODM and private label sourcing support"],
+  },
+  {
     slug: "mi-band-straps",
     title: "Mi Band Straps Supplier",
     h1: "Xiaomi Mi Band and Redmi Watch Strap Supplier",
@@ -85,6 +97,28 @@ const pages = [
     intro:
       "BOORUI supplies Mi Band accessories for buyers who want high-volume replacement straps, upgraded leather and metal options, and fashion parts.",
     bullets: ["Mi Band 8/9/10 and Pro model directions", "Redmi Watch and Huawei Fit compatibility options", "Silicone, woven, leather and metal materials", "Fashion parts for customized retail collections"],
+  },
+  {
+    slug: "smart-watch-accessories",
+    title: "Smart Watch Accessories Supplier",
+    h1: "Smart Watch Accessories for B2B Sourcing Programs",
+    description:
+      "Source smart watch accessories from BOORUI including wearable straps, compatible protective parts, packaging support and OEM/ODM accessory programs.",
+    keywords: "smart watch accessories supplier, wearable accessories OEM, smartwatch accessory wholesale",
+    intro:
+      "BOORUI helps global buyers build smart watch accessory programs around compatible straps, materials, packaging direction, model matching and one-stop wearable sourcing.",
+    bullets: ["Wearable accessory sourcing for multiple device families", "Straps, protective parts and compatible add-on directions", "Private label packaging and sample review support", "One-stop accessory planning for global B2B buyers"],
+  },
+  {
+    slug: "phone-accessories",
+    title: "Phone and Tablet Accessories Supplier",
+    h1: "Phone Cases, Tablet Cases and 3C Accessories Supplier",
+    description:
+      "BOORUI supports phone cases, tablet cases, earbuds cases, USB-C hubs and 3C accessories for OEM/ODM and global B2B sourcing programs.",
+    keywords: "phone accessories supplier, tablet case supplier, earbuds case supplier, USB-C hub sourcing, 3C accessories manufacturer",
+    intro:
+      "Beyond smart watch bands, BOORUI can support 3C accessory sourcing discussions for phone cases, tablet cases, earbuds cases, USB-C hubs and related private label programs.",
+    bullets: ["Phone case and tablet case sourcing direction", "Earbuds case and USB-C hub accessory discussions", "TPU, PC and protective accessory material planning", "OEM/ODM and private label packaging support"],
   },
   {
     slug: "silicone-watch-bands",
@@ -140,6 +174,17 @@ const pages = [
     intro:
       "BOORUI helps global buyers move from product idea to sellable smartwatch band collection with OEM/ODM and private label coordination.",
     bullets: ["Material and color selection", "Logo and packaging direction", "Model matching support", "Ready stock plus custom development paths"],
+  },
+  {
+    slug: "oem-odm-service",
+    title: "OEM/ODM Smart Watch Bands and 3C Accessories Service",
+    h1: "OEM/ODM Service for Smart Watch Bands and 3C Accessories",
+    description:
+      "BOORUI provides OEM/ODM service for smart watch bands, phone cases, tablet cases and 3C accessories including logo, color, material, packaging, samples and bulk production support.",
+    keywords: "OEM ODM smart watch bands, 3C accessories manufacturer, private label phone accessories, custom smartwatch bands",
+    intro:
+      "BOORUI's OEM/ODM service helps global buyers confirm product direction, custom logo, custom color, material, packaging, sample review and bulk production planning.",
+    bullets: ["Custom logo and private label packaging", "Custom color, material and compatible model planning", "Fast sample discussion and QC sample review", "Bulk production and global delivery coordination"],
   },
   {
     slug: "private-label-watch-bands",
@@ -337,7 +382,13 @@ function imageFor(page) {
       alt: "BOORUI private label packaging samples for custom smartwatch band programs",
     };
   }
-  if (slug.includes("silicone") || slug.includes("nylon") || slug.includes("garmin")) {
+  if (slug.includes("phone-accessories") || slug.includes("smart-watch-accessories")) {
+    return {
+      file: "brand-showroom.png",
+      alt: "BOORUI smart watch and 3C accessories showroom sourcing display",
+    };
+  }
+  if (slug.includes("silicone") || slug.includes("nylon") || slug.includes("garmin") || slug.includes("huawei")) {
     return {
       file: "sport-silicone-garmin.png",
       alt: "BOORUI sport silicone and nylon smartwatch bands for Garmin-style outdoor buyers",
@@ -386,6 +437,12 @@ function proofScenario(page) {
     return {
       title: "Wholesale Assortment Selection",
       text: "Bulk buyers can compare Apple Watch, Samsung, Garmin and Mi Band styles across key materials, then request quotation based on target models and quantities.",
+    };
+  }
+  if (slug.includes("phone-accessories") || slug.includes("smart-watch-accessories")) {
+    return {
+      title: "One-Stop 3C Accessory Sourcing",
+      text: "Brands, importers and distributors can discuss wearable straps, phone cases, tablet cases, earbuds cases, USB-C hubs and private label packaging through one inquiry path.",
     };
   }
   if (slug.includes("apple")) {
@@ -499,6 +556,33 @@ function advantageDetails(page) {
       "Nylon and silicone sport directions suit active, outdoor, gym and daily sports positioning.",
       "Outdoor and daily sports scenes make the range easier to merchandise for fitness and adventure users.",
       "MOQ-friendly product selection helps buyers test sizes and colors before scaling a wholesale order.",
+    ];
+  }
+
+  if (slug.includes("huawei-watch")) {
+    return [
+      "Huawei Watch and Huawei Band strap directions help buyers expand wearable accessory programs beyond Apple, Samsung and Garmin.",
+      "Silicone, leather, nylon and metal material options support sport, daily, fashion and premium retail positioning.",
+      "Retail-ready styles help online sellers and distributors test Huawei-compatible demand with clear product images and catalog support.",
+      "OEM/ODM and private label sourcing support can cover model matching, logo discussion, packaging direction and sample review.",
+    ];
+  }
+
+  if (slug.includes("smart-watch-accessories")) {
+    return [
+      "Wearable accessory sourcing across multiple device families helps buyers build broader smart watch programs from one supplier conversation.",
+      "Straps, protective parts and compatible add-on directions can be reviewed around target models, materials and sales channels.",
+      "Private label packaging and sample review support help buyers prepare accessory lines for marketplaces, retail and distributor catalogs.",
+      "One-stop accessory planning reduces the need to coordinate separate suppliers for every smartwatch accessory category.",
+    ];
+  }
+
+  if (slug.includes("phone-accessories")) {
+    return [
+      "Phone case and tablet case sourcing direction supports buyers who want 3C accessory programs alongside smartwatch bands.",
+      "Earbuds case and USB-C hub accessory discussions can be handled as part of a broader private label product plan.",
+      "TPU, PC and protective accessory material planning helps buyers compare product feel, durability and retail positioning.",
+      "OEM/ODM and private label packaging support keeps logo, packaging and launch requirements clear before quotation.",
     ];
   }
 
@@ -757,6 +841,39 @@ function productFit(page) {
       ],
     };
   }
+  if (slug.includes("huawei-watch")) {
+    return {
+      title: "Huawei Wearable Accessory Fit",
+      intro: "Best for buyers expanding Huawei Watch and Huawei Band compatible assortments across sport, daily and premium directions.",
+      cards: [
+        ["Compatibility", "Huawei Watch, Huawei Band and related wearable strap sourcing directions."],
+        ["Buyer Use", "Suitable for importers, distributors, online sellers and accessory retailers serving Huawei users."],
+        ["Sourcing Edge", "Coordinate model fit, material, colors, packaging and quotation through one BOORUI inquiry path."],
+      ],
+    };
+  }
+  if (slug.includes("smart-watch-accessories")) {
+    return {
+      title: "Smart Watch Accessory Program Fit",
+      intro: "Best for buyers planning broader wearable accessory catalogs rather than only one strap category.",
+      cards: [
+        ["Category Focus", "Smart watch straps, compatible add-ons, protective parts and packaging directions."],
+        ["Buyer Use", "Suitable for global brands, distributors, Amazon sellers and private label accessory programs."],
+        ["Sourcing Edge", "One-stop planning for device fit, materials, samples and branded packaging."],
+      ],
+    };
+  }
+  if (slug.includes("phone-accessories")) {
+    return {
+      title: "3C Accessory Program Fit",
+      intro: "Best for buyers adding phone cases, tablet cases, earbuds cases or USB-C hubs alongside wearable accessories.",
+      cards: [
+        ["Category Focus", "Phone case, tablet case, earbuds case, USB-C hub and related 3C accessory directions."],
+        ["Buyer Use", "Suitable for importers, distributors, chain stores, online sellers and private label brands."],
+        ["Sourcing Edge", "Discuss TPU, PC, packaging, logo, samples and bulk order planning in one inquiry path."],
+      ],
+    };
+  }
   if (slug.includes("mi-band")) {
     return {
       title: "Mi Band Accessory Fit",
@@ -813,32 +930,125 @@ function productFit(page) {
   };
 }
 
+function procurementSpecs(page) {
+  const slug = page.slug;
+  const material = slug.includes("phone-accessories")
+    ? "TPU, PC, silicone direction, protective materials and 3C accessory finishes"
+    : slug.includes("leather")
+      ? "Genuine leather, cowhide, microfiber leather and hybrid leather directions"
+      : slug.includes("metal")
+        ? "Stainless steel, Milanese, jewelry-style metal and premium finish directions"
+        : slug.includes("nylon")
+          ? "Nylon, woven elastic, sport loop and outdoor textile directions"
+          : slug.includes("silicone") || slug.includes("garmin") || slug.includes("huawei")
+            ? "Silicone, rubber direction, nylon and sport-ready wearable materials"
+            : "Silicone, leather, nylon, stainless steel, titanium direction, TPU and PC";
+  const compatibleModel = slug.includes("phone-accessories")
+    ? "Phone cases, tablet cases, earbuds cases, USB-C hubs and related 3C accessories"
+    : slug.includes("smart-watch-accessories")
+      ? "Apple Watch, Samsung Galaxy Watch, Garmin, Huawei, Mi Band and related wearable accessories"
+      : slug.includes("huawei")
+        ? "Huawei Watch, Huawei Band and related wearable accessory directions"
+        : slug.includes("garmin")
+          ? "20mm, 22mm and 26mm quick-release Garmin-style watch directions"
+          : slug.includes("samsung")
+            ? "Samsung Galaxy Watch compatible strap directions"
+            : slug.includes("apple")
+              ? "Apple Watch compatible size directions including 38-49mm programs"
+              : "Apple Watch, Samsung, Garmin, Huawei, Mi Band and related wearable models";
+
+  return `
+      <section class="section procurement-specs">
+        <div class="section-head">
+          <h2>Product Details for B2B Inquiry</h2>
+          <p>Use these fields to prepare a faster quotation, sample review and private label discussion with BOORUI.</p>
+        </div>
+        <div class="spec-grid" role="table" aria-label="BOORUI product sourcing details">
+          ${[
+            ["Product Name", page.h1],
+            ["Material", material],
+            ["Compatible Model", compatibleModel],
+            ["Color Options", "Standard colors, seasonal colors and custom color direction available by project"],
+            ["Size", "Confirm by device model, connector, lug width or accessory type before quotation"],
+            ["Logo Customization", "Logo discussion available for suitable products and packaging"],
+            ["Packaging Customization", "Neutral, private label and buyer-facing packaging direction available on request"],
+            ["MOQ", "Low MOQ support can be discussed by product type, stock status and customization scope"],
+            ["Sample Time", "Sampling time depends on material, color, packaging and custom requirements"],
+            ["Production Time", "Bulk production timing is confirmed after sample, packaging and order details are approved"],
+          ]
+            .map(([label, value]) => `<div role="row"><span role="cell">${label}</span><strong role="cell">${value}</strong></div>`)
+            .join("")}
+        </div>
+      </section>`;
+}
+
+function seoIntroSection(page) {
+  return `
+      <section class="section seo-intro-section">
+        <div class="seo-intro-copy">
+          <h2>${page.title} for Global B2B Buyers</h2>
+          <p>${page.intro} Buyers can use this page to compare product fit, material direction, packaging possibilities and inquiry requirements before starting quotation. BOORUI focuses on practical B2B sourcing language, so every product direction is tied to real buyer needs such as compatibility, retail positioning, private label presentation, sample review and repeatable bulk order planning.</p>
+          <p>For brands, importers, distributors, Amazon sellers, Shopify stores and private label businesses, a clear sourcing path reduces back-and-forth. BOORUI can discuss custom logo, custom color, custom material, private label packaging, fast sample review and bulk production coordination based on the confirmed product scope. Documentation, compliance support and buyer proof should be reviewed with real order materials during inquiry, sample confirmation and pre-shipment review.</p>
+          <p>The recommended next step is to share target device models, material preference, estimated quantity, destination country, packaging needs and launch timeline. Joanne Wu can help prepare suitable product options, catalog references, quotation details and sample discussion for a more efficient OEM/ODM or wholesale sourcing process.</p>
+        </div>
+      </section>`;
+}
+
 function pageHtml(page) {
   const pageImage = imageFor(page);
   const scenario = proofScenario(page);
   const fit = productFit(page);
   const advantageTexts = advantageDetails(page);
+  const pageUrl = `${siteUrl}/${page.slug}/`;
   const pageSchema = {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    name: brandName,
-    legalName: companyName,
-    logo: `${relative(page.slug)}assets/boorui-logo.png`,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "No. 21, Chengdexinyuan, Dawang High-tech Zone, Dawang Subdistrict",
-      addressLocality: "Sihui, Zhaoqing",
-      addressRegion: "Guangdong",
-      addressCountry: "CN",
-    },
-    contactPoint: {
-      "@type": "ContactPoint",
-      contactType: "sales",
-      name: "Joanne Wu",
-      telephone: contactPhone,
-      email: contactEmail,
-      availableLanguage: ["English", "Chinese"],
-    },
+    "@graph": [
+      {
+        "@type": "Organization",
+        name: brandName,
+        legalName: companyName,
+        url: siteUrl,
+        logo: `${siteUrl}/assets/boorui-logo.png`,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "No. 21, Chengdexinyuan, Dawang High-tech Zone, Dawang Subdistrict",
+          addressLocality: "Sihui, Zhaoqing",
+          addressRegion: "Guangdong",
+          addressCountry: "CN",
+        },
+        contactPoint: {
+          "@type": "ContactPoint",
+          contactType: "sales",
+          name: "Joanne Wu",
+          telephone: contactPhone,
+          email: contactEmail,
+          availableLanguage: ["English", "Chinese"],
+        },
+      },
+      {
+        "@type": "Product",
+        name: `${page.h1} | BOORUI`,
+        brand: { "@type": "Brand", name: brandName },
+        category: "Smart Watch Bands and 3C Accessories",
+        description: page.description,
+        url: pageUrl,
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: [
+          { "@type": "Question", name: "Do you support OEM/ODM?", acceptedAnswer: { "@type": "Answer", text: "Yes. BOORUI supports OEM/ODM coordination including material direction, color selection, logo, packaging and model matching." } },
+          { "@type": "Question", name: "What is your MOQ?", acceptedAnswer: { "@type": "Answer", text: "MOQ depends on product type, stock status, material, color split and customization scope. Low MOQ support can be discussed for suitable programs." } },
+          { "@type": "Question", name: "Can I customize logo and packaging?", acceptedAnswer: { "@type": "Answer", text: "Yes. BOORUI can discuss logo, packaging, private label presentation, barcode and label direction based on confirmed order requirements." } },
+        ],
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+          { "@type": "ListItem", position: 2, name: page.h1, item: pageUrl },
+        ],
+      },
+    ],
   };
   const download = page.download
     ? `<a class="button primary" href="${relative(page.slug)}assets/BOORUI_2026_English_Product_Brochure.pdf" download data-i18n="button.catalog">Download Catalog</a>`
@@ -888,6 +1098,7 @@ function pageHtml(page) {
                 <a href="${relative(page.slug)}apple-watch-bands/">Apple Watch Bands</a>
                 <a href="${relative(page.slug)}samsung-watch-bands/">Samsung Watch Bands</a>
                 <a href="${relative(page.slug)}garmin-watch-bands/">Garmin Watch Bands</a>
+                <a href="${relative(page.slug)}huawei-watch-bands/">Huawei Watch Bands</a>
                 <a href="${relative(page.slug)}mi-band-straps/">Mi Band Straps</a>
               </section>
               <section>
@@ -903,6 +1114,9 @@ function pageHtml(page) {
                 <a href="${relative(page.slug)}private-label-watch-bands/">Private Label Watch Bands</a>
                 <a href="${relative(page.slug)}custom-watch-band-manufacturer/">Custom Watch Band Manufacturer</a>
                 <a href="${relative(page.slug)}wholesale-smartwatch-bands/">Wholesale Smartwatch Bands</a>
+                <a href="${relative(page.slug)}smart-watch-accessories/">Smart Watch Accessories</a>
+                <a href="${relative(page.slug)}phone-accessories/">Phone & Tablet Accessories</a>
+                <a href="${relative(page.slug)}oem-odm-service/">OEM/ODM Service</a>
               </section>
               <section>
                 <h3>Priority Markets</h3>
@@ -959,6 +1173,8 @@ ${languageSwitcher()}
           ${fit.cards.map(([title, text]) => `<article><span>Product Fit</span><h3>${title}</h3><p>${text}</p></article>`).join("")}
         </div>
       </section>
+      ${procurementSpecs(page)}
+      ${seoIntroSection(page)}
       <section class="section subpage-advantages">
         <div class="section-head">
           <h2>BOORUI Buyer Advantages</h2>
@@ -989,8 +1205,22 @@ ${languageSwitcher()}
         </div>
         <div class="faq-list">
           <details open><summary>Is BOORUI a fit for private label buyers?</summary><p>Yes. BOORUI supports private label watch band programs for brands, Amazon sellers, Shopify stores, distributors and importers.</p></details>
-          <details><summary>What products can BOORUI supply?</summary><p>BOORUI supplies Apple Watch bands, Samsung Watch bands, Garmin bands, Mi Band straps and wearable accessory collections.</p></details>
+          <details><summary>What products can BOORUI supply?</summary><p>BOORUI supplies Apple Watch bands, Samsung Watch bands, Garmin bands, Huawei Watch bands, Mi Band straps, wearable accessories, phone cases, tablet cases, earbuds cases, USB-C hubs and 3C accessory collections.</p></details>
           <details><summary>Can I request OEM or ODM customization?</summary><p>Yes. BOORUI supports OEM/ODM coordination including material direction, color selection, logo, packaging and model matching.</p></details>
+          <details><summary>What is your MOQ?</summary><p>MOQ depends on product type, stock status, material, color split and customization scope. Low MOQ support can be discussed for suitable ready stock and starter private label programs.</p></details>
+          <details><summary>Can I customize logo and packaging?</summary><p>Yes. BOORUI can discuss custom logo, custom color, private label packaging, barcode placement and label direction after product and order requirements are confirmed.</p></details>
+          <details><summary>How long does sampling take?</summary><p>Sampling time depends on material, customization scope and packaging needs. Joanne Wu can confirm timing after reviewing your target models, quantity and requirements.</p></details>
+          <details><summary>Do you ship worldwide?</summary><p>BOORUI supports global B2B buyers with export-oriented communication, catalog sharing, quotation, sample discussion and delivery planning.</p></details>
+          <details><summary>What materials can you provide?</summary><p>Common material directions include silicone, leather, nylon, stainless steel, titanium direction, TPU and PC for wearable and 3C accessory programs.</p></details>
+        </div>
+      </section>
+      <section class="section bottom-cta">
+        <h2>Looking for a reliable smart watch bands manufacturer?</h2>
+        <p>Contact BOORUI today for OEM/ODM smart watch bands, private label packaging and 3C accessories sourcing support.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="${relative(page.slug)}index.html#inquiry">Send Inquiry</a>
+          <a class="button secondary" href="mailto:${contactEmail}">Contact Us</a>
+          <a class="button secondary" href="${whatsappUrl}">WhatsApp</a>
         </div>
       </section>
     </main>
