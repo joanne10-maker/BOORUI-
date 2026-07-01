@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import path from "node:path";
 
 const contactEmail = "joannexiaoxiao@gmail.com";
@@ -27,8 +27,7 @@ const socialLinks = [
 const companyName = "Shenzhen Boxing Trading Development Co., Ltd.";
 const brandName = "BOORUI";
 const addressEn = "No. 21, Chengdexinyuan, Dawang High-tech Zone, Dawang Subdistrict, Sihui, Zhaoqing, Guangdong, China";
-const addressZh = "广东省肇庆市四会市大旺街道大旺高新区诚德鑫园21号 博惢科技";
-const osmUrl = `https://www.openstreetmap.org/search?query=${encodeURIComponent(`${addressZh} ${addressEn}`)}`;
+const osmUrl = `https://www.openstreetmap.org/search?query=${encodeURIComponent(addressEn)}`;
 const osmEmbedUrl = "https://www.openstreetmap.org/export/embed.html?bbox=112.72%2C23.20%2C113.02%2C23.46&layer=mapnik";
 
 const pages = [
@@ -313,18 +312,18 @@ function languageSwitcher() {
   return `
         <div class="language-switcher" data-language-switcher>
           <button class="language-trigger" type="button" aria-haspopup="menu" aria-expanded="false" data-language-trigger>
-            <span aria-hidden="true">🌐</span>
+            <span aria-hidden="true">EN</span>
             <span data-i18n="nav.language">Language</span>
             <strong data-language-current>English</strong>
           </button>
           <div class="language-menu" role="menu" data-language-menu>
             <button type="button" role="menuitem" data-language-option="en"><span>English</span><small>EN</small></button>
-            <button type="button" role="menuitem" data-language-option="fr"><span>Français</span><small>FR</small></button>
+            <button type="button" role="menuitem" data-language-option="fr"><span>French</span><small>FR</small></button>
             <button type="button" role="menuitem" data-language-option="de"><span>Deutsch</span><small>DE</small></button>
-            <button type="button" role="menuitem" data-language-option="ar"><span>العربية</span><small>AR</small></button>
-            <button type="button" role="menuitem" data-language-option="ru"><span>Русский</span><small>RU</small></button>
-            <button type="button" role="menuitem" data-language-option="es"><span>Español</span><small>ES</small></button>
-            <button type="button" role="menuitem" data-language-option="pt"><span>Português</span><small>PT</small></button>
+            <button type="button" role="menuitem" data-language-option="ar"><span>Arabic</span><small>AR</small></button>
+            <button type="button" role="menuitem" data-language-option="ru"><span>Russian</span><small>RU</small></button>
+            <button type="button" role="menuitem" data-language-option="es"><span>Spanish</span><small>ES</small></button>
+            <button type="button" role="menuitem" data-language-option="pt"><span>Portuguese</span><small>PT</small></button>
           </div>
         </div>`;
 }
@@ -372,48 +371,48 @@ function imageFor(page) {
   const slug = page.slug;
   if (slug.includes("/watch-band-supplier")) {
     return {
-      file: "country-sourcing-showroom.png",
+      src: "assets/trust/factory-machines.png",
       alt: "BOORUI branded showroom sourcing scene for overseas watch band buyers",
     };
   }
   if (slug.includes("oem") || slug.includes("private-label") || slug.includes("custom") || slug.includes("wholesale")) {
     return {
-      file: "private-label-packaging.png",
+      src: "assets/trust/private-label-packaging-color.jpg",
       alt: "BOORUI private label packaging samples for custom smartwatch band programs",
     };
   }
   if (slug.includes("phone-accessories") || slug.includes("smart-watch-accessories")) {
     return {
-      file: "brand-showroom.png",
+      src: "assets/boorui-banner-accessories.png",
       alt: "BOORUI smart watch and 3C accessories showroom sourcing display",
     };
   }
   if (slug.includes("silicone") || slug.includes("nylon") || slug.includes("garmin") || slug.includes("huawei")) {
     return {
-      file: "sport-silicone-garmin.png",
+      src: "assets/generated/sport-silicone-garmin.png",
       alt: "BOORUI sport silicone and nylon smartwatch bands for Garmin-style outdoor buyers",
     };
   }
   if (slug.includes("apple") || slug.includes("leather") || slug.includes("metal")) {
     return {
-      file: "apple-premium-lifestyle.png",
+      src: "assets/generated/apple-premium-lifestyle.png",
       alt: "BOORUI premium Apple Watch compatible bands with branded packaging",
     };
   }
   if (slug === "contact") {
     return {
-      file: "global-buyer-meeting.png",
-      alt: "BOORUI showroom buyer meeting with smartwatch band samples and branded wall sign",
+      src: "assets/boorui-banner-team-no-text.png",
+      alt: "BOORUI global sourcing support team and buyer service presentation",
     };
   }
   if (slug === "about" || slug === "download" || slug === "products") {
     return {
-      file: "brand-showroom.png",
+      src: "assets/generated/brand-showroom.png",
       alt: "BOORUI branded showroom with smartwatch band samples and packaging",
     };
   }
   return {
-    file: "lifestyle-collection.png",
+    src: "assets/generated/lifestyle-collection.png",
     alt: "BOORUI premium smartwatch band lifestyle collection with branded packaging",
   };
 }
@@ -507,7 +506,7 @@ function advantageDetails(page) {
 
   if (slug.includes("private-label")) {
     return [
-      "BOORUI can help buyers shape a branded range around target material, price level, device model and retail channel.",
+      "BOORUI can help buyers shape a branded range around target material, value tier, device model and retail channel.",
       "Logo and packaging discussion supports presentation boxes, labels and buyer-facing collection planning.",
       "Ready stock and custom options let brands balance speed with product differentiation.",
       "A B2B quotation workflow keeps models, colors, quantity, samples and packaging requirements clear before order planning.",
@@ -544,7 +543,7 @@ function advantageDetails(page) {
   if (slug.includes("samsung-watch")) {
     return [
       "Sport, fashion and daily-wear straps help buyers build a balanced Galaxy Watch compatible assortment.",
-      "Material and color selection support helps match target retail pricing, customer use and brand direction.",
+      "Material and color selection support helps match target retail positioning, customer use and brand direction.",
       "A wholesale inquiry path keeps model fit, quantity, packaging and quotation details easy to confirm.",
       "OEM/ODM and private label coordination supports buyers who need a more branded Samsung Watch band range.",
     ];
@@ -660,7 +659,42 @@ function pageTrustExtras(page) {
               <a class="button secondary" href="${alibabaUrl}" target="_blank" rel="noopener" data-i18n="trust.alibaba">Alibaba Storefront</a>
             </div>
           </div>
-          <img src="${prefix}assets/joanne-ip.png" alt="Joanne Wu, BOORUI Founder and Global Sourcing Advisor" />
+          <img src="${prefix}assets/boorui-banner-team-no-text.png" alt="BOORUI sourcing support team for overseas B2B buyers" />
+        </div>
+      </section>`;
+}
+
+function realProofGallery(page) {
+  const prefix = relative(page.slug);
+  const slug = page.slug;
+  const primary = slug.includes("private-label") || slug.includes("oem") || slug.includes("custom") || slug.includes("wholesale")
+    ? ["Private Label Packaging", "Buyer-ready packaging directions help brands prepare gift, retail and marketplace product presentations.", "assets/trust/private-label-packaging-color.jpg", "Private label smartwatch band packaging options for BOORUI buyers"]
+    : ["Factory Production Capability", "Real production visuals help buyers review machine work, strap production and factory-direct sourcing confidence.", "assets/trust/factory-machines.png", "BOORUI factory machines and strap production area"];
+  const cards = [
+    primary,
+    ["Gift-Ready Product Set", "Clean packaging presentation supports higher perceived value for private label and wholesale product ranges.", "assets/trust/watch-band-gift-packaging.jpg", "BOORUI watch band gift packaging set"],
+    ["Compliance Document Support", "Compliance-related documents can be reviewed on request according to product, market and order requirements.", "assets/trust/compliance-document-gallery.png", "BOORUI compliance document gallery for buyer review"],
+  ];
+
+  return `
+      <section class="section real-proof-section">
+        <div class="section-head">
+          <h2>Factory, Packaging and Compliance Proof</h2>
+          <p>Real BOORUI materials are presented with careful B2B wording so buyers can review capability without unsupported certificate numbers or unverifiable customer claims.</p>
+        </div>
+        <div class="real-proof-grid">
+          ${cards
+            .map(
+              ([title, text, image, alt]) => `<article>
+                <img src="${prefix}${image}" alt="${alt}" />
+                <div>
+                  <span>Buyer Proof</span>
+                  <h3>${title}</h3>
+                  <p>${text}</p>
+                </div>
+              </article>`,
+            )
+            .join("")}
         </div>
       </section>`;
 }
@@ -680,7 +714,7 @@ function wholesaleSystemSection(page) {
   const productRails = [
     ["Apple Watch Bestseller Range", "Silicone, leather, magnetic, metal, rhinestone and fashion styles for mainstream retail demand.", "assets/products/hero-collection.jpg"],
     ["Sport and Outdoor Range", "Nylon and silicone options for Garmin, Samsung and active lifestyle replacement straps.", "assets/generated/sport-silicone-garmin.png"],
-    ["Private Label Packaging Range", "Logo, pouch, box and collection planning support for wholesale buyers building branded programs.", "assets/generated/private-label-packaging.png"],
+    ["Private Label Packaging Range", "Logo, pouch, box and collection planning support for wholesale buyers building branded programs.", "assets/trust/private-label-packaging-color.jpg"],
   ];
 
   return `
@@ -763,7 +797,7 @@ function contactLocationSection(page) {
       <section class="section contact-detail-section">
         <div class="contact-detail-grid">
           <article class="contact-profile-card">
-            <img src="${prefix}assets/generated/global-buyer-meeting.png" alt="BOORUI showroom buyer meeting with branded wall sign and watch band samples" />
+            <img src="${prefix}assets/boorui-banner-team-no-text.png" alt="BOORUI global sourcing support team for overseas smartwatch band buyers" />
             <div>
               <span data-i18n="contact.sales">Sales Contact</span>
               <h2>Joanne Wu</h2>
@@ -776,7 +810,6 @@ function contactLocationSection(page) {
             <span data-i18n="contact.address">Company Address</span>
             <h2>BOORUI Office & Buyer Contact Point</h2>
             <p>${addressEn}</p>
-            <p lang="zh-CN">${addressZh}</p>
             <div class="map-card map-card-embedded" aria-label="OpenStreetMap location preview for BOORUI address">
               <div class="map-card-copy">
                 <strong>OpenStreetMap</strong>
@@ -792,7 +825,6 @@ function contactLocationSection(page) {
               </div>
               <div class="map-address-strip">
                 <span>${addressEn}</span>
-                <span lang="zh-CN">${addressZh}</span>
                 <a class="button primary" href="${osmUrl}" target="_blank" rel="noopener" data-i18n="button.map">Open Exact Address in OpenStreetMap</a>
               </div>
             </div>
@@ -982,6 +1014,46 @@ function procurementSpecs(page) {
       </section>`;
 }
 
+function productDetailShowcase(page) {
+  if (page.slug !== "products") return "";
+  const prefix = relative(page.slug);
+  const products = [
+    {
+      title: "Sport Band Glow 2",
+      text: "Sport-ready Apple Watch compatible band direction for active lifestyle assortments.",
+      image: "assets/products/apple-rugged-steel-rubber.jpg",
+      href: "products/sport-band-glow-2/",
+    },
+    {
+      title: "Tempo Sport Band 46mm - Tidal",
+      text: "Single product page for 46mm sport band buyers, sample review and private label discussion.",
+      image: "assets/products/apple-sports-hand-strap.jpg",
+      href: "products/tempo-band-46mm-tidal/",
+    },
+    {
+      title: "Sport Silicone Smartwatch Band",
+      text: "Individual smartwatch band page prepared for OEM/ODM, wholesale and private label inquiry.",
+      image: "assets/products/apple-rugged-steel-rubber.jpg",
+      href: "products/custom-sport-smartwatch-band-951421118692/",
+    },
+  ];
+
+  return `
+      <section class="section related-products-section">
+        <div class="section-head">
+          <h2>Featured Product Detail Pages</h2>
+          <p>Open individual product pages for gallery review, specifications, packaging options and direct inquiry.</p>
+        </div>
+        <div class="hot-product-grid">
+          ${products
+            .map(
+              (item) => `<article><img src="${prefix}${item.image}" alt="${item.title} product page for BOORUI B2B buyers" /><h3>${item.title}</h3><p>${item.text}</p><a href="${prefix}${item.href}">View Product</a></article>`,
+            )
+            .join("")}
+        </div>
+      </section>`;
+}
+
 function seoIntroSection(page) {
   return `
       <section class="section seo-intro-section">
@@ -1022,7 +1094,7 @@ function pageHtml(page) {
           name: "Joanne Wu",
           telephone: contactPhone,
           email: contactEmail,
-          availableLanguage: ["English", "Chinese"],
+          availableLanguage: ["English", "French", "German", "Arabic", "Russian", "Spanish", "Portuguese"],
         },
       },
       {
@@ -1084,39 +1156,50 @@ function pageHtml(page) {
       <nav class="nav mega-nav" aria-label="Main navigation">
         <div class="nav-item has-mega">
           <a class="nav-trigger" href="${relative(page.slug)}index.html#products" data-i18n="nav.products">Products</a>
-          <div class="mega-menu" aria-label="Product mega menu">
+          <div class="mega-menu" aria-label="B2B product navigation">
             <div class="mega-feature">
-              <img src="${relative(page.slug)}assets/products/hero-collection.jpg" alt="BOORUI smartwatch band collection" />
+              <img src="${relative(page.slug)}assets/collections/apple-bands.jpg" alt="BOORUI Apple Watch band sourcing collection" />
               <div>
-                <strong>BOORUI Collections</strong>
-                <span>Browse by device, material, sourcing goal and target market.</span>
+                <span class="mega-kicker">Quote-ready navigation</span>
+                <strong>Smart Watch Bands & 3C Accessories</strong>
+                <span>Move from category browsing to OEM/ODM, private label, wholesale and sample discussion faster.</span>
+                <div class="mega-actions">
+                  <a href="${relative(page.slug)}index.html#inquiry">Send Inquiry</a>
+                  <a href="${relative(page.slug)}assets/BOORUI_2026_English_Product_Brochure.pdf" download>Download Catalog</a>
+                  <a href="${whatsappUrl}" target="_blank" rel="noopener">WhatsApp Joanne</a>
+                </div>
               </div>
             </div>
             <div class="mega-grid">
               <section>
-                <h3>Device Lines</h3>
+                <h3>Shop by Device</h3>
                 <a href="${relative(page.slug)}apple-watch-bands/">Apple Watch Bands</a>
                 <a href="${relative(page.slug)}samsung-watch-bands/">Samsung Watch Bands</a>
                 <a href="${relative(page.slug)}garmin-watch-bands/">Garmin Watch Bands</a>
                 <a href="${relative(page.slug)}huawei-watch-bands/">Huawei Watch Bands</a>
-                <a href="${relative(page.slug)}mi-band-straps/">Mi Band Straps</a>
+                <a href="${relative(page.slug)}mi-band-straps/">Xiaomi / Mi Band Straps</a>
               </section>
               <section>
-                <h3>Materials</h3>
+                <h3>Shop by Material</h3>
                 <a href="${relative(page.slug)}silicone-watch-bands/">Silicone Watch Bands</a>
                 <a href="${relative(page.slug)}leather-watch-bands/">Leather Watch Bands</a>
                 <a href="${relative(page.slug)}nylon-watch-bands/">Nylon Watch Bands</a>
                 <a href="${relative(page.slug)}metal-watch-bands/">Metal Watch Bands</a>
               </section>
               <section>
-                <h3>B2B Sourcing</h3>
+                <h3>Shop by Buyer Need</h3>
+                <a href="${relative(page.slug)}private-label-watch-bands/">Private Label Packaging</a>
+                <a href="${relative(page.slug)}oem-odm-service/">OEM/ODM Custom Service</a>
                 <a href="${relative(page.slug)}oem-odm-watch-bands/">OEM & ODM Watch Bands</a>
-                <a href="${relative(page.slug)}private-label-watch-bands/">Private Label Watch Bands</a>
-                <a href="${relative(page.slug)}custom-watch-band-manufacturer/">Custom Watch Band Manufacturer</a>
                 <a href="${relative(page.slug)}wholesale-smartwatch-bands/">Wholesale Smartwatch Bands</a>
+                <a href="${relative(page.slug)}custom-watch-band-manufacturer/">Custom Project Support</a>
+              </section>
+              <section>
+                <h3>3C Accessories</h3>
                 <a href="${relative(page.slug)}smart-watch-accessories/">Smart Watch Accessories</a>
                 <a href="${relative(page.slug)}phone-accessories/">Phone & Tablet Accessories</a>
-                <a href="${relative(page.slug)}oem-odm-service/">OEM/ODM Service</a>
+                <a href="${relative(page.slug)}products/">Hot Product Gallery</a>
+                <a href="${relative(page.slug)}products/sport-band-glow-2/">Sport Band Glow 2</a>
               </section>
               <section>
                 <h3>Priority Markets</h3>
@@ -1128,11 +1211,12 @@ function pageHtml(page) {
             </div>
           </div>
         </div>
-        <a class="nav-trigger" href="${relative(page.slug)}index.html#oem" data-i18n="nav.services">OEM/ODM</a>
+        <a class="nav-trigger" href="${relative(page.slug)}oem-odm-service/" data-i18n="nav.services">OEM/ODM</a>
+        <a class="nav-trigger" href="${relative(page.slug)}index.html#trust">Factory</a>
         <a class="nav-trigger" href="${relative(page.slug)}index.html#markets" data-i18n="nav.markets">Markets</a>
         <a class="nav-trigger" href="${relative(page.slug)}blog/index.html">Blog</a>
         <a class="nav-trigger" href="${relative(page.slug)}index.html#about" data-i18n="nav.about">About</a>
-        <a class="nav-trigger" href="${relative(page.slug)}index.html#faq" data-i18n="nav.faq">FAQ</a>
+        <a class="nav-trigger" href="${relative(page.slug)}index.html#inquiry" data-i18n="nav.contact">Contact</a>
       </nav>
       <div class="header-actions">
 ${languageSwitcher()}
@@ -1157,7 +1241,7 @@ ${languageSwitcher()}
           </div>
         </div>
         <div class="hero-visual subpage-hero-media" aria-label="BOORUI product visual">
-          <img src="${relative(page.slug)}assets/generated/${pageImage.file}" alt="${pageImage.alt}" />
+          <img src="${relative(page.slug)}${pageImage.src}" alt="${pageImage.alt}" />
         </div>
       </section>
       <section class="intro-strip">
@@ -1174,6 +1258,7 @@ ${languageSwitcher()}
         </div>
       </section>
       ${procurementSpecs(page)}
+      ${productDetailShowcase(page)}
       ${seoIntroSection(page)}
       <section class="section subpage-advantages">
         <div class="section-head">
@@ -1197,6 +1282,7 @@ ${languageSwitcher()}
           <article><span>Scenario</span><strong>${scenario.title}</strong><p>${scenario.text}</p><a href="${alibabaUrl}" target="_blank" rel="noopener" data-i18n="trust.alibaba">Alibaba Storefront</a></article>
         </div>
       </section>
+      ${realProofGallery(page)}
       ${contactLocationSection(page)}
       <section class="section comparison">
         <div class="section-head">
@@ -1239,7 +1325,6 @@ ${languageSwitcher()}
           <span class="footer-map-caption">Dawang High-tech Zone</span>
         </a>
         <span>${addressEn}</span>
-        <span lang="zh-CN">${addressZh}</span>
         <a class="footer-map-link" href="${osmUrl}" target="_blank" rel="noopener">Open in OpenStreetMap</a>
       </div>
     </footer>
@@ -1268,15 +1353,16 @@ function languagePageHtml(page) {
   const prefix = relative(page.slug);
   return pageHtml(page)
     .replaceAll(`${prefix}assets`, `../${prefix}assets`)
-    .replaceAll(`${prefix}styles.css`, `../${prefix}styles.css`);
+    .replaceAll(`${prefix}styles.css`, `../${prefix}styles.css`)
+    .replaceAll(`href="${prefix}blog/index.html"`, `href="../${prefix}blog/index.html"`)
+    .replaceAll(`href="${prefix}products/`, `href="../${prefix}products/`);
 }
 
 function languageHomeHtml(html) {
   return html
-    .replaceAll('href="assets/', 'href="../assets/')
-    .replaceAll('src="assets/', 'src="../assets/')
+    .replace(/href="(?!#|https?:|mailto:|tel:|\/|\.{2}\/)([^"]+)"/g, 'href="../$1"')
     .replaceAll('content="assets/', 'content="../assets/')
-    .replaceAll('href="styles.css', 'href="../styles.css');
+    .replaceAll('src="assets/', 'src="../assets/');
 }
 
 const homeHtml = await fs.readFile("index.html", "utf8");
@@ -1297,3 +1383,4 @@ await Promise.all(
 );
 
 console.log(`Generated ${allPages.length} BOORUI SEO pages and ${languageCodes.length} language route sets.`);
+

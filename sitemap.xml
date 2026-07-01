@@ -1,7 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://boorui.vercel.app/</loc><priority>1.0</priority></url>
   <url><loc>https://boorui.vercel.app/products/</loc><priority>0.9</priority></url>
+  <url><loc>https://boorui.vercel.app/products/sport-band-glow-2/</loc><priority>0.8</priority></url>
+  <url><loc>https://boorui.vercel.app/products/tempo-band-46mm-tidal/</loc><priority>0.8</priority></url>
+  <url><loc>https://boorui.vercel.app/products/nn39-squ-metal-link-smartwatch-band/</loc><priority>0.8</priority></url>
+  <url><loc>https://boorui.vercel.app/products/custom-silicone-smartwatch-band-636223717452/</loc><priority>0.8</priority></url>
+  <url><loc>https://boorui.vercel.app/products/custom-sport-smartwatch-band-951421118692/</loc><priority>0.8</priority></url>
   <url><loc>https://boorui.vercel.app/apple-watch-bands/</loc><priority>0.9</priority></url>
   <url><loc>https://boorui.vercel.app/samsung-watch-bands/</loc><priority>0.9</priority></url>
   <url><loc>https://boorui.vercel.app/garmin-watch-bands/</loc><priority>0.9</priority></url>
@@ -31,4 +36,8 @@
   <url><loc>https://boorui.vercel.app/contact/</loc><priority>0.7</priority></url>
   <url><loc>https://boorui.vercel.app/download/</loc><priority>0.6</priority></url>
   <url><loc>https://boorui.vercel.app/blog/</loc><priority>0.6</priority></url>
+  <url><loc>https://boorui.vercel.app/blog/how-to-choose-oem-smartwatch-band-supplier/</loc><priority>0.6</priority></url>
+  <url><loc>https://boorui.vercel.app/blog/private-label-watch-bands-custom-logo-packaging-guide/</loc><priority>0.6</priority></url>
+  <url><loc>https://boorui.vercel.app/blog/silicone-vs-leather-vs-nylon-vs-metal-watch-bands/</loc><priority>0.6</priority></url>
 </urlset>
+

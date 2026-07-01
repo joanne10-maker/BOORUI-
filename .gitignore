@@ -11,3 +11,7 @@ Thumbs.db
 *.log
 .cache/
 node_modules/
+OPEN-*.bat
+OPEN-*.html
+START-LOCAL-PREVIEW.bat
+_screen*.png

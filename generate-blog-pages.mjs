@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import path from "node:path";
 
 const root = ".";
@@ -9,14 +9,10 @@ const whatsappUrl = "https://wa.me/8613632456845";
 const whatsappFloatUrl = "https://wa.me/8613632456845?text=Hello%2C%20I%20am%20interested%20in%20your%20products.%20Please%20send%20me%20more%20details.";
 const alibabaUrl = "https://boorui.en.alibaba.com/";
 const addressEn = "No. 21, Chengdexinyuan, Dawang High-tech Zone, Dawang Subdistrict, Sihui, Zhaoqing, Guangdong, China";
-const addressZh = "广东省肇庆市四会市大旺街道大旺高新区诚德鑫园21号 博惢科技";
-
-const addressDisplayZh = "广东省肇庆市四会市大旺街道大旺高新区诚德鑫园21号 博惢科技";
-
 const articleImages = {
-  "how-to-choose-oem-smartwatch-band-supplier": "../assets/generated/global-buyer-meeting.png",
-  "silicone-vs-leather-vs-nylon-vs-metal-watch-bands": "../assets/products/hero-collection.jpg",
-  "private-label-watch-bands-custom-logo-packaging-guide": "../assets/generated/private-label-packaging.png",
+  "how-to-choose-oem-smartwatch-band-supplier": "assets/trust/factory-machines.png",
+  "silicone-vs-leather-vs-nylon-vs-metal-watch-bands": "assets/products/hero-collection.jpg",
+  "private-label-watch-bands-custom-logo-packaging-guide": "assets/trust/private-label-packaging-color.jpg",
 };
 
 function escapeHtml(value) {
@@ -130,16 +126,16 @@ function languageSwitcher(prefix) {
   return `
         <div class="language-switcher" data-language-switcher>
           <button class="language-trigger" type="button" aria-haspopup="menu" aria-expanded="false" data-language-trigger>
-            <span aria-hidden="true">🌐</span><span data-i18n="nav.language">Language</span><strong data-language-current>English</strong>
+            <span aria-hidden="true">EN</span><span data-i18n="nav.language">Language</span><strong data-language-current>English</strong>
           </button>
           <div class="language-menu" role="menu" data-language-menu>
             <button type="button" role="menuitem" data-language-option="en"><span>English</span><small>EN</small></button>
-            <button type="button" role="menuitem" data-language-option="fr"><span>Français</span><small>FR</small></button>
+            <button type="button" role="menuitem" data-language-option="fr"><span>French</span><small>FR</small></button>
             <button type="button" role="menuitem" data-language-option="de"><span>Deutsch</span><small>DE</small></button>
-            <button type="button" role="menuitem" data-language-option="ar"><span>العربية</span><small>AR</small></button>
-            <button type="button" role="menuitem" data-language-option="ru"><span>Русский</span><small>RU</small></button>
-            <button type="button" role="menuitem" data-language-option="es"><span>Español</span><small>ES</small></button>
-            <button type="button" role="menuitem" data-language-option="pt"><span>Português</span><small>PT</small></button>
+            <button type="button" role="menuitem" data-language-option="ar"><span>Arabic</span><small>AR</small></button>
+            <button type="button" role="menuitem" data-language-option="ru"><span>Russian</span><small>RU</small></button>
+            <button type="button" role="menuitem" data-language-option="es"><span>Spanish</span><small>ES</small></button>
+            <button type="button" role="menuitem" data-language-option="pt"><span>Portuguese</span><small>PT</small></button>
           </div>
         </div>`;
 }
@@ -210,11 +206,12 @@ function shell({ title, description, body, prefix = "../", canonicalPath = "/blo
       <a class="brand" href="${prefix}index.html" aria-label="BOORUI home"><img src="${prefix}assets/boorui-logo.png" alt="BOORUI logo" /></a>
       <nav class="nav mega-nav" aria-label="Main navigation">
         <a class="nav-trigger" href="${prefix}index.html#products" data-i18n="nav.products">Products</a>
-        <a class="nav-trigger" href="${prefix}index.html#oem" data-i18n="nav.services">OEM/ODM</a>
+        <a class="nav-trigger" href="${prefix}oem-odm-service/" data-i18n="nav.services">OEM/ODM</a>
+        <a class="nav-trigger" href="${prefix}index.html#trust">Factory</a>
         <a class="nav-trigger" href="${prefix}index.html#markets" data-i18n="nav.markets">Markets</a>
         <a class="nav-trigger" href="${prefix}blog/index.html">Blog</a>
         <a class="nav-trigger" href="${prefix}index.html#about" data-i18n="nav.about">About</a>
-        <a class="nav-trigger" href="${prefix}index.html#inquiry" data-i18n="nav.contact">Contact Us</a>
+        <a class="nav-trigger" href="${prefix}index.html#inquiry" data-i18n="nav.contact">Contact</a>
       </nav>
       <div class="header-actions">
 ${languageSwitcher(prefix)}
@@ -224,8 +221,8 @@ ${languageSwitcher(prefix)}
 ${body}
     <footer class="footer">
       <div><img src="${prefix}assets/boorui-logo.png" alt="BOORUI logo" /><p data-i18n="footer.tagline">OEM & ODM Smartwatch Band Supplier for Global B2B Buyers.</p></div>
-      <div><strong data-i18n="footer.corePages">Core Pages</strong><a href="${prefix}index.html#products" data-i18n="nav.products">Products</a><a href="${prefix}index.html#oem" data-i18n="nav.services">OEM/ODM</a><a href="${prefix}blog/index.html">Blog</a><a href="${prefix}index.html#inquiry" data-i18n="nav.contact">Contact</a></div>
-      <div><strong data-i18n="footer.address">Address</strong><span>${addressEn}</span><span lang="zh-CN">${addressDisplayZh}</span><a href="mailto:${contactEmail}">${contactEmail}</a></div>
+      <div><strong data-i18n="footer.corePages">Core Pages</strong><a href="${prefix}index.html#products" data-i18n="nav.products">Products</a><a href="${prefix}oem-odm-service/" data-i18n="nav.services">OEM/ODM</a><a href="${prefix}index.html#trust">Factory</a><a href="${prefix}blog/index.html">Blog</a><a href="${prefix}index.html#inquiry" data-i18n="nav.contact">Contact</a></div>
+      <div><strong data-i18n="footer.address">Address</strong><span>${addressEn}</span><a href="mailto:${contactEmail}">${contactEmail}</a></div>
     </footer>
     ${whatsappFloatButton()}
   </body>
@@ -233,7 +230,7 @@ ${body}
 }
 
 function articlePage(article, allArticles) {
-  const image = articleImages[article.slug] || "../assets/generated/brand-showroom.png";
+  const image = `../../${articleImages[article.slug] || "assets/generated/brand-showroom.png"}`;
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -293,7 +290,7 @@ ${article.html}
 function blogIndexPage(articles) {
   const cards = articles
     .map((article) => {
-      const image = articleImages[article.slug] || "../assets/generated/brand-showroom.png";
+      const image = `../${articleImages[article.slug] || "assets/generated/brand-showroom.png"}`;
       return `<article class="blog-card">
         <img src="${image}" alt="${escapeHtml(article.meta.h1)}" />
         <div>
@@ -350,3 +347,4 @@ for (const article of articles) {
 }
 
 console.log(`Generated blog index and ${articles.length} blog articles.`);
+

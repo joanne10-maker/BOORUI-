@@ -54,7 +54,7 @@ Common product directions include:
 - Garmin-compatible outdoor bands
 - Apple Watch lifestyle collections
 
-A buyer should not choose products only because they look good in a catalog. The range should match the sales channel. Amazon sellers often need clear compatibility, strong images and reliable packaging labels. Shopify brands may need a stronger story and more visual consistency. Distributors may need a broader assortment that covers several price levels.
+A buyer should not choose products only because they look good in a catalog. The range should match the sales channel. Amazon sellers often need clear compatibility, strong images and reliable packaging labels. Shopify brands may need a stronger story and more visual consistency. Distributors may need a broader assortment that covers several value tiers.
 
 ## Step 2: Confirm Device Compatibility
 

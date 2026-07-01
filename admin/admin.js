@@ -1,309 +1,425 @@
-const state = {
-  products: JSON.parse(localStorage.getItem("booruiProducts") || "[]"),
-  blogs: JSON.parse(localStorage.getItem("booruiBlogs") || "[]"),
-};
+const STORAGE_KEY = "boorui_product_admin_drafts";
 
-const productForm = document.querySelector("#productForm");
-const blogForm = document.querySelector("#blogForm");
-const productPreview = document.querySelector("#productPreview");
-const blogPreview = document.querySelector("#blogPreview");
-const productDrafts = document.querySelector("#productDrafts");
-const blogDrafts = document.querySelector("#blogDrafts");
+const form = document.querySelector("#productForm");
+const preview = document.querySelector("#productPreview");
+const outputText = document.querySelector("#outputText");
 const toast = document.querySelector("#toast");
+const draftList = document.querySelector("#productDrafts");
+const productCount = document.querySelector("#productCount");
+const seoScore = document.querySelector("#seoScore");
+
+let imagePreviewUrl = "";
+
+function showToast(message) {
+  toast.textContent = message;
+  toast.classList.add("show");
+  window.setTimeout(() => toast.classList.remove("show"), 1800);
+}
 
 function slugify(value) {
   return String(value || "")
     .trim()
     .toLowerCase()
-    .replace(/&/g, "and")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 }
 
-function lines(value) {
+function listFromText(value, separator = "\n") {
   return String(value || "")
-    .split(/\r?\n/)
+    .split(separator)
     .map((item) => item.trim())
     .filter(Boolean);
 }
 
-function formData(form) {
-  return Object.fromEntries(new FormData(form).entries());
-}
-
-function save() {
-  localStorage.setItem("booruiProducts", JSON.stringify(state.products));
-  localStorage.setItem("booruiBlogs", JSON.stringify(state.blogs));
-  renderCounts();
-  renderDrafts();
-}
-
-function showToast(message) {
-  toast.textContent = message;
-  toast.classList.add("show");
-  window.clearTimeout(showToast.timer);
-  showToast.timer = window.setTimeout(() => toast.classList.remove("show"), 1800);
-}
-
-async function copyText(text, successMessage) {
+function getDrafts() {
   try {
-    await navigator.clipboard.writeText(text);
-    showToast(successMessage);
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
   } catch {
-    const textarea = document.createElement("textarea");
-    textarea.value = text;
-    textarea.setAttribute("readonly", "");
-    textarea.style.position = "fixed";
-    textarea.style.left = "-9999px";
-    document.body.append(textarea);
-    textarea.select();
-    const copied = document.execCommand("copy");
-    textarea.remove();
-    showToast(copied ? successMessage : "复制失败，请手动选中文本复制。");
+    return [];
   }
 }
 
-function previewPath(path) {
-  if (!path) return "../assets/products/hero-collection.jpg";
-  if (/^(https?:)?\/\//.test(path) || path.startsWith("../") || path.startsWith("/")) return path;
-  return `../${path}`;
+function saveDrafts(drafts) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(drafts));
 }
 
-function productFromForm() {
-  const data = formData(productForm);
+function checkedValues(name) {
+  return Array.from(form.querySelectorAll(`input[name="${name}"]:checked`)).map((item) => item.value);
+}
+
+function formData() {
+  const data = Object.fromEntries(new FormData(form).entries());
+  data.slug = slugify(data.slug || data.name);
+  data.colors = listFromText(data.colors, ",");
+  data.features = listFromText(data.features);
+  data.buyerScenarios = listFromText(data.buyerScenarios);
+  data.faq = listFromText(data.faq);
+  data.customization = checkedValues("customization");
+  data.image = imagePreviewUrl || data.image || "../assets/products/hero-collection.jpg";
+  data.updatedAt = new Date().toISOString();
+  return data;
+}
+
+function productJson(data = formData()) {
   return {
-    id: productForm.dataset.editing || crypto.randomUUID(),
-    name: data.name || "New BOORUI Smartwatch Band",
-    slug: data.slug || slugify(data.name || "new-boorui-product"),
+    name: data.name,
+    slug: data.slug,
     category: data.category,
-    material: data.material,
-    moq: data.moq || "Confirm by quotation",
-    leadTime: data.leadTime || "Confirm after sample review",
-    models: data.models || "Apple Watch, Samsung, Garmin and Mi Band compatible options",
-    image: data.image || "assets/products/hero-collection.jpg",
-    features: lines(data.features),
-    description: data.description || "Factory direct smartwatch band sourcing support for OEM/ODM and private label wholesale buyers.",
-    updatedAt: new Date().toISOString(),
+    pageType: data.pageType,
+    b2bPositioning: {
+      buyerType: data.buyerType,
+      buyerScenarios: data.buyerScenarios,
+      supplierPosition: "Smart Watch Bands & 3C Accessories OEM/ODM Manufacturer",
+    },
+    product: {
+      material: data.material,
+      compatibleModels: data.models,
+      sizeRange: data.sizeRange,
+      colors: data.colors,
+      image: data.image,
+      summary: data.summary,
+      features: data.features,
+    },
+    supply: {
+      moq: data.moq,
+      sampleTime: data.sampleTime,
+      productionTime: data.productionTime,
+      customization: data.customization,
+      packagingOptions: data.packagingOptions,
+      complianceDocuments: data.complianceDocs,
+    },
+    seo: {
+      title: `${data.name} | BOORUI OEM/ODM Smart Watch Bands Supplier`,
+      description: data.seoDescription,
+      h1: `${data.name} for ${data.buyerType}`,
+    },
+    faq: data.faq,
+    inquiry: {
+      contact: "Joanne Wu",
+      email: "joannexiaoxiao@gmail.com",
+      whatsapp: "+86-13632456845",
+      alibabaStorefront: "https://boorui.en.alibaba.com/index.html",
+    },
   };
 }
 
-function blogFromForm() {
-  const data = formData(blogForm);
-  return {
-    id: blogForm.dataset.editing || crypto.randomUUID(),
-    title: data.title || "BOORUI Smartwatch Band Sourcing Guide",
-    slug: data.slug || slugify(data.title || "boorui-sourcing-guide"),
-    keyword: data.keyword || "smartwatch band supplier",
-    meta: data.meta || "A practical BOORUI sourcing guide for global B2B smartwatch band buyers.",
-    body: data.body || "## Introduction\nWrite your article content here.",
-    cta: data.cta || "Get a Quote",
-    author: data.author || "Joanne Wu",
-    updatedAt: new Date().toISOString(),
-  };
+function productHtml(data = formData()) {
+  const features = data.features.map((item) => `<li>${escapeHtml(item)}</li>`).join("\n");
+  const colors = data.colors.map((item) => `<span>${escapeHtml(item)}</span>`).join("");
+  const customization = data.customization.map((item) => `<li>${escapeHtml(item)}</li>`).join("\n");
+  const scenarios = data.buyerScenarios.map((item) => `<li>${escapeHtml(item)}</li>`).join("\n");
+  const faq = data.faq
+    .map(
+      (item) => `<details>
+          <summary>${escapeHtml(item.split(" A: ")[0] || item)}</summary>
+          <p>${escapeHtml(item.includes(" A: ") ? item.split(" A: ").slice(1).join(" A: ") : item)}</p>
+        </details>`,
+    )
+    .join("\n");
+
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>${escapeHtml(data.name)} | BOORUI OEM/ODM Smart Watch Bands Supplier</title>
+    <meta name="description" content="${escapeHtml(data.seoDescription)}" />
+  </head>
+  <body>
+    <main>
+      <section>
+        <p>${escapeHtml(data.pageType)} / ${escapeHtml(data.buyerType)}</p>
+        <h1>${escapeHtml(data.name)} for ${escapeHtml(data.buyerType)}</h1>
+        <img src="${escapeHtml(data.image)}" alt="${escapeHtml(data.name)} product image" />
+        <p>${escapeHtml(data.summary)}</p>
+      </section>
+
+      <section>
+        <h2>B2B Sourcing Information</h2>
+        <table>
+          <tr><th>Category</th><td>${escapeHtml(data.category)}</td></tr>
+          <tr><th>Material</th><td>${escapeHtml(data.material)}</td></tr>
+          <tr><th>Compatible Models</th><td>${escapeHtml(data.models)}</td></tr>
+          <tr><th>Size Range</th><td>${escapeHtml(data.sizeRange)}</td></tr>
+          <tr><th>MOQ</th><td>${escapeHtml(data.moq)}</td></tr>
+          <tr><th>Sample Time</th><td>${escapeHtml(data.sampleTime)}</td></tr>
+          <tr><th>Production Time</th><td>${escapeHtml(data.productionTime)}</td></tr>
+        </table>
+      </section>
+
+      <section>
+        <h2>Color Options</h2>
+        <div>${colors}</div>
+      </section>
+
+      <section>
+        <h2>Customization Support</h2>
+        <ul>
+${customization}
+        </ul>
+        <p>${escapeHtml(data.packagingOptions)}</p>
+        <p>${escapeHtml(data.complianceDocs)}</p>
+      </section>
+
+      <section>
+        <h2>Buyer Use Cases</h2>
+        <ul>
+${scenarios}
+        </ul>
+      </section>
+
+      <section>
+        <h2>Buyer Advantages</h2>
+        <ul>
+${features}
+        </ul>
+      </section>
+
+      <section>
+        <h2>FAQ</h2>
+${faq}
+      </section>
+
+      <section>
+        <h2>Request a Quote</h2>
+        <p>Email Joanne Wu: joannexiaoxiao@gmail.com</p>
+        <p>WhatsApp: +86 136 3245 6845</p>
+        <p>Please share product model, quantity, target market, packaging needs and sample requirements.</p>
+      </section>
+    </main>
+  </body>
+</html>`;
 }
 
-function productHtml(product) {
-  const features = product.features.map((item) => `<li>${item}</li>`).join("");
-  return `<article class="product-card">
-  <img src="${product.image}" alt="${product.name}" />
-  <div>
-    <span>${product.category}</span>
-    <h3>${product.name}</h3>
-    <p>${product.description}</p>
-    <ul>${features}</ul>
-    <a href="#inquiry">Get a Quote</a>
-  </div>
-</article>`;
+function inquiryText(data = formData()) {
+  return `Hello Joanne,
+
+I am interested in ${data.name} for ${data.buyerType}.
+
+Product direction: ${data.category}
+Material: ${data.material}
+Compatible models: ${data.models}
+Estimated quantity / MOQ discussion: ${data.moq}
+Customization needed: ${data.customization.join(", ") || "To be confirmed"}
+Packaging needs: ${data.packagingOptions || "To be confirmed"}
+
+Please help confirm available samples, quotation, lead time and private label options.
+
+Thank you.`;
 }
 
-function blogMarkdown(blog) {
-  return `- SEO Title: ${blog.title} | BOORUI
-- Meta Description: ${blog.meta}
-- URL Slug: ${blog.slug}
-- H1: ${blog.title}
-- Target Keywords: ${blog.keyword}
-- Author: ${blog.author}
-
-# ${blog.title}
-
-${blog.body}
-
-## CTA
-${blog.cta}: Send BOORUI your target models, quantity, material direction and packaging needs.`;
+function escapeHtml(value) {
+  return String(value || "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
 }
 
-function renderProductPreview() {
-  const product = productFromForm();
-  const features = product.features.length ? product.features : ["Custom logo available", "Private label packaging", "Sample review support"];
-  productPreview.innerHTML = `
-    <div class="preview-media"><img src="${previewPath(product.image)}" alt="${product.name}" onerror="this.src='../assets/products/hero-collection.jpg'" /></div>
-    <div class="preview-meta">
-      <span>${product.category}</span>
-      <span>${product.material}</span>
-      <span>MOQ: ${product.moq}</span>
+function updateSeoScore(data = formData()) {
+  const fields = [
+    "name",
+    "slug",
+    "pageType",
+    "buyerType",
+    "category",
+    "material",
+    "models",
+    "sizeRange",
+    "moq",
+    "sampleTime",
+    "productionTime",
+    "image",
+    "summary",
+    "packagingOptions",
+    "complianceDocs",
+    "seoDescription",
+  ];
+  let filled = fields.filter((field) => String(data[field] || "").trim().length > 0).length;
+  if (data.features.length >= 3) filled += 1;
+  if (data.colors.length >= 2) filled += 1;
+  if (data.customization.length >= 3) filled += 1;
+  if (data.buyerScenarios.length >= 2) filled += 1;
+  if (data.faq.length >= 2) filled += 1;
+  const score = Math.round((filled / (fields.length + 5)) * 100);
+  seoScore.textContent = `${score}%`;
+}
+
+function renderPreview() {
+  const data = formData();
+  const fallback = "../assets/products/hero-collection.jpg";
+  const customization = data.customization
+    .slice(0, 5)
+    .map((item) => `<span>${escapeHtml(item)}</span>`)
+    .join("");
+  const scenarios = data.buyerScenarios
+    .slice(0, 3)
+    .map((item) => `<li>${escapeHtml(item)}</li>`)
+    .join("");
+
+  preview.innerHTML = `
+    <img src="${escapeHtml(data.image || fallback)}" alt="${escapeHtml(data.name || "Product image")}" onerror="this.src='${fallback}'" />
+    <div class="product-preview-body">
+      <div class="b2b-preview-meta">
+        <span>${escapeHtml(data.pageType || "Product Page")}</span>
+        <span>${escapeHtml(data.buyerType || "Buyer Type")}</span>
+      </div>
+      <h3>${escapeHtml(data.name || "New Product Name")}</h3>
+      <p>${escapeHtml(data.summary || "Add a clear B2B product summary for overseas buyers.")}</p>
+      <div class="preview-specs">
+        <div><strong>Category</strong><span>${escapeHtml(data.category || "Category")}</span></div>
+        <div><strong>Material</strong><span>${escapeHtml(data.material || "Material")}</span></div>
+        <div><strong>MOQ</strong><span>${escapeHtml(data.moq || "MOQ")}</span></div>
+        <div><strong>Sample</strong><span>${escapeHtml(data.sampleTime || "Sample time")}</span></div>
+      </div>
+      <div class="preview-tags">${customization}</div>
+      <div class="buyer-list">
+        <strong>Buyer use cases</strong>
+        <ul>${scenarios || "<li>Add buyer scenarios for better B2B clarity.</li>"}</ul>
+      </div>
     </div>
-    <h3 class="preview-title">${product.name}</h3>
-    <p class="preview-copy">${product.description}</p>
-    <ul class="preview-list">${features.map((item) => `<li>${item}</li>`).join("")}</ul>
-    <p class="preview-copy"><strong>Compatible:</strong> ${product.models}</p>
-    <p class="preview-copy"><strong>Lead time:</strong> ${product.leadTime}</p>
   `;
-  renderSeoScore();
-}
-
-function renderBlogPreview() {
-  const blog = blogFromForm();
-  blogPreview.innerHTML = `
-    <header>
-      <span>${blog.keyword}</span>
-      <h3 class="preview-title">${blog.title}</h3>
-      <p>${blog.meta}</p>
-    </header>
-    <div class="preview-meta">
-      <span>Author: ${blog.author}</span>
-      <span>Slug: ${blog.slug}</span>
-      <span>${blog.cta}</span>
-    </div>
-    <div class="markdown-preview">${blog.body}</div>
-  `;
-  renderSeoScore();
-}
-
-function renderCounts() {
-  document.querySelector("#productCount").textContent = state.products.length;
-  document.querySelector("#blogCount").textContent = state.blogs.length;
-}
-
-function renderSeoScore() {
-  const activePanel = document.querySelector(".admin-panel.active")?.dataset.panel;
-  const values = activePanel === "blogs" ? blogFromForm() : productFromForm();
-  const checks = Object.values(values).filter((value) => {
-    if (Array.isArray(value)) return value.length > 0;
-    return String(value || "").trim().length > 0;
-  });
-  const total = Object.keys(values).length;
-  document.querySelector("#seoScore").textContent = `${Math.round((checks.length / total) * 100)}%`;
-}
-
-function draftItem(item, type) {
-  const subtitle = type === "product" ? `${item.category} / ${item.material}` : item.keyword;
-  return `<article class="draft-item">
-    <strong>${item.name || item.title}</strong>
-    <p>${subtitle}</p>
-    <p>Slug: ${item.slug}</p>
-    <div class="draft-actions">
-      <button type="button" data-action="edit" data-type="${type}" data-id="${item.id}">编辑</button>
-      <button type="button" data-action="copy" data-type="${type}" data-id="${item.id}">复制</button>
-      <button type="button" data-action="delete" data-type="${type}" data-id="${item.id}">删除</button>
-    </div>
-  </article>`;
+  outputText.value = JSON.stringify(productJson(data), null, 2);
+  updateSeoScore(data);
 }
 
 function renderDrafts() {
-  productDrafts.innerHTML = state.products.length ? state.products.map((item) => draftItem(item, "product")).join("") : "<p class=\"preview-copy\">还没有新品草稿。</p>";
-  blogDrafts.innerHTML = state.blogs.length ? state.blogs.map((item) => draftItem(item, "blog")).join("") : "<p class=\"preview-copy\">还没有博客草稿。</p>";
+  const drafts = getDrafts();
+  productCount.textContent = String(drafts.length);
+  if (!drafts.length) {
+    draftList.innerHTML = `<p class="empty-state">暂无草稿。填写产品资料后点击“保存 B2B 草稿”。</p>`;
+    return;
+  }
+  draftList.innerHTML = drafts
+    .map(
+      (draft, index) => `
+        <div class="draft-item">
+          <div>
+            <strong>${escapeHtml(draft.name)}</strong>
+            <span>${escapeHtml(draft.category)} / ${escapeHtml(draft.buyerType || "B2B buyer")} / ${escapeHtml(draft.slug)}</span>
+          </div>
+          <button class="ghost-button small" type="button" data-load-draft="${index}">载入</button>
+        </div>
+      `,
+    )
+    .join("");
 }
 
-function fillForm(form, item) {
-  Object.entries(item).forEach(([key, value]) => {
+function setCheckboxes(name, values) {
+  const selected = Array.isArray(values) ? values : [];
+  form.querySelectorAll(`input[name="${name}"]`).forEach((field) => {
+    field.checked = selected.includes(field.value);
+  });
+}
+
+function loadDraft(index) {
+  const draft = getDrafts()[index];
+  if (!draft) return;
+  Object.entries(draft).forEach(([key, value]) => {
     const field = form.elements[key];
-    if (!field) return;
-    field.value = Array.isArray(value) ? value.join("\n") : value;
+    if (!field || key === "imageFile" || key === "customization") return;
+    field.value = Array.isArray(value) ? value.join(key === "colors" ? ", " : "\n") : value;
   });
-  form.dataset.editing = item.id;
+  setCheckboxes("customization", draft.customization);
+  imagePreviewUrl = "";
+  renderPreview();
+  showToast("草稿已载入");
 }
 
-function switchPanel(panel) {
-  document.querySelectorAll("[data-panel-target]").forEach((button) => {
-    button.classList.toggle("active", button.dataset.panelTarget === panel);
-  });
-  document.querySelectorAll("[data-panel]").forEach((section) => {
-    section.classList.toggle("active", section.dataset.panel === panel);
-  });
-  renderSeoScore();
+async function copyText(text, message) {
+  try {
+    await navigator.clipboard.writeText(text);
+    showToast(message);
+  } catch {
+    outputText.value = text;
+    outputText.select();
+    showToast("已放入输出框，请手动复制");
+  }
+}
+
+function download(filename, text, type = "application/json;charset=utf-8") {
+  const blob = new Blob([text], { type });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  link.click();
+  URL.revokeObjectURL(url);
 }
 
 document.querySelectorAll("[data-panel-target]").forEach((button) => {
-  button.addEventListener("click", () => switchPanel(button.dataset.panelTarget));
+  button.addEventListener("click", () => {
+    document.querySelectorAll("[data-panel-target]").forEach((item) => item.classList.remove("active"));
+    document.querySelectorAll("[data-panel]").forEach((panel) => panel.classList.remove("active"));
+    button.classList.add("active");
+    document.querySelector(`[data-panel="${button.dataset.panelTarget}"]`)?.classList.add("active");
+  });
 });
 
-productForm.addEventListener("input", renderProductPreview);
-blogForm.addEventListener("input", renderBlogPreview);
+form.addEventListener("input", renderPreview);
 
-productForm.addEventListener("reset", () => {
-  delete productForm.dataset.editing;
-  window.setTimeout(renderProductPreview);
+form.imageFile.addEventListener("change", () => {
+  const file = form.imageFile.files?.[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    imagePreviewUrl = reader.result;
+    renderPreview();
+  };
+  reader.readAsDataURL(file);
 });
 
-blogForm.addEventListener("reset", () => {
-  delete blogForm.dataset.editing;
-  window.setTimeout(renderBlogPreview);
-});
-
-productForm.addEventListener("submit", (event) => {
+form.addEventListener("submit", (event) => {
   event.preventDefault();
-  const product = productFromForm();
-  const index = state.products.findIndex((item) => item.id === product.id);
-  if (index >= 0) state.products[index] = product;
-  else state.products.unshift(product);
-  save();
-  showToast("新品草稿已保存到本地。");
+  const data = formData();
+  const drafts = getDrafts();
+  const nextDrafts = [data, ...drafts.filter((item) => item.slug !== data.slug)].slice(0, 50);
+  saveDrafts(nextDrafts);
+  renderDrafts();
+  showToast("B2B 产品草稿已保存");
 });
 
-blogForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const blog = blogFromForm();
-  const index = state.blogs.findIndex((item) => item.id === blog.id);
-  if (index >= 0) state.blogs[index] = blog;
-  else state.blogs.unshift(blog);
-  save();
-  showToast("博客草稿已保存到本地。");
+form.addEventListener("reset", () => {
+  window.setTimeout(() => {
+    imagePreviewUrl = "";
+    renderPreview();
+  }, 0);
 });
 
-document.querySelector("#copyProductHtml").addEventListener("click", () => {
-  copyText(productHtml(productFromForm()), "产品 HTML 已复制。");
+document.querySelector("#copyJson").addEventListener("click", () => {
+  copyText(JSON.stringify(productJson(), null, 2), "B2B JSON 已复制");
 });
 
-document.querySelector("#copyBlogMarkdown").addEventListener("click", () => {
-  copyText(blogMarkdown(blogFromForm()), "博客 Markdown 已复制。");
+document.querySelector("#copyHtml").addEventListener("click", () => {
+  copyText(productHtml(), "产品页 HTML 已复制");
 });
 
-document.querySelector("#exportJson").addEventListener("click", () => {
-  copyText(JSON.stringify(state, null, 2), "全部草稿 JSON 已复制。");
+document.querySelector("#copyInquiry").addEventListener("click", () => {
+  copyText(inquiryText(), "询盘跟进文案已复制");
 });
 
-document.querySelector(".admin-main").addEventListener("click", (event) => {
-  const button = event.target.closest("[data-action]");
+document.querySelector("#downloadJson").addEventListener("click", () => {
+  const data = formData();
+  download(`${data.slug || "boorui-product"}.json`, JSON.stringify(productJson(data), null, 2));
+});
+
+document.querySelector("#downloadHtml").addEventListener("click", () => {
+  const data = formData();
+  download(`${data.slug || "boorui-product"}.html`, productHtml(data), "text/html;charset=utf-8");
+});
+
+document.querySelector("#clearDrafts").addEventListener("click", () => {
+  if (!window.confirm("确定清空所有产品草稿吗？")) return;
+  saveDrafts([]);
+  renderDrafts();
+  showToast("草稿已清空");
+});
+
+draftList.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-load-draft]");
   if (!button) return;
-  const list = button.dataset.type === "product" ? state.products : state.blogs;
-  const item = list.find((draft) => draft.id === button.dataset.id);
-  if (!item) return;
-
-  if (button.dataset.action === "edit") {
-    if (button.dataset.type === "product") {
-      fillForm(productForm, item);
-      switchPanel("products");
-      renderProductPreview();
-    } else {
-      fillForm(blogForm, item);
-      switchPanel("blogs");
-      renderBlogPreview();
-    }
-  }
-
-  if (button.dataset.action === "copy") {
-    copyText(button.dataset.type === "product" ? productHtml(item) : blogMarkdown(item), "内容已复制。");
-  }
-
-  if (button.dataset.action === "delete") {
-    const index = list.findIndex((draft) => draft.id === item.id);
-    list.splice(index, 1);
-    save();
-    showToast("草稿已删除。");
-  }
+  loadDraft(Number(button.dataset.loadDraft));
 });
 
-renderProductPreview();
-renderBlogPreview();
-renderCounts();
+renderPreview();
 renderDrafts();

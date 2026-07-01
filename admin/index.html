@@ -3,31 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BOORUI Admin | Products & Blog Editor</title>
+    <title>BOORUI B2B Product Admin | 产品发布工作台</title>
     <meta name="robots" content="noindex, nofollow" />
     <link rel="icon" href="../assets/boorui-logo.png" />
     <link rel="stylesheet" href="admin.css" />
   </head>
   <body>
     <aside class="admin-sidebar">
-      <a class="admin-brand" href="../index.html" aria-label="Back to BOORUI website">
+      <a class="admin-brand" href="../OPEN-BOORUI-LOCAL.html" aria-label="Open BOORUI local browser">
         <img src="../assets/boorui-logo.png" alt="BOORUI logo" />
-        <span>Admin Studio</span>
+        <span>B2B Product Admin</span>
       </a>
-      <nav aria-label="Admin sections">
-        <button class="nav-item active" type="button" data-panel-target="products">
+
+      <nav aria-label="Admin navigation">
+        <button class="nav-item active" type="button" data-panel-target="publish">
           <span aria-hidden="true">+</span>
-          <strong>上新品</strong>
+          <strong>发布产品</strong>
         </button>
-        <button class="nav-item" type="button" data-panel-target="blogs">
-          <span aria-hidden="true">B</span>
-          <strong>编辑博客</strong>
-        </button>
-        <button class="nav-item" type="button" data-panel-target="library">
+        <button class="nav-item" type="button" data-panel-target="drafts">
           <span aria-hidden="true">#</span>
-          <strong>内容库</strong>
+          <strong>草稿库</strong>
+        </button>
+        <button class="nav-item" type="button" data-panel-target="help">
+          <span aria-hidden="true">?</span>
+          <strong>使用说明</strong>
         </button>
       </nav>
+
       <div class="admin-contact-card">
         <img src="../assets/joanne-ip.png" alt="Joanne Wu" />
         <div>
@@ -41,197 +43,275 @@
     <main class="admin-main">
       <header class="admin-topbar">
         <div>
-          <p>BOORUI 独立站后台</p>
-          <h1>新品发布与博客编辑工作台</h1>
+          <p>BOORUI 本地后台</p>
+          <h1>B2B 产品发布工作台</h1>
+          <span class="topbar-note">围绕 OEM/ODM、Private Label、Wholesale、Factory Direct 和海外买家询盘生成产品资料。</span>
         </div>
         <div class="topbar-actions">
-          <button class="ghost-button" type="button" id="exportJson">导出 JSON</button>
-          <a class="primary-button" href="../blog/index.html">查看 Blog</a>
+          <a class="ghost-button" href="../products/sport-band-glow-2/index.html" target="_blank" rel="noopener">查看示例产品页</a>
+          <a class="primary-button" href="../OPEN-BOORUI-LOCAL.html" target="_blank" rel="noopener">打开本地站点</a>
         </div>
       </header>
 
       <section class="status-grid" aria-label="Admin status">
         <article>
-          <span>Products</span>
+          <span>B2B Drafts</span>
           <strong id="productCount">0</strong>
-          <p>本地新品草稿</p>
+          <p>本地保存的产品草稿</p>
         </article>
         <article>
-          <span>Blog</span>
-          <strong id="blogCount">0</strong>
-          <p>本地博客草稿</p>
-        </article>
-        <article>
-          <span>SEO Ready</span>
+          <span>Buyer Readiness</span>
           <strong id="seoScore">0%</strong>
-          <p>当前编辑完整度</p>
+          <p>采购信息、SEO 和询盘资料完整度</p>
+        </article>
+        <article>
+          <span>Output</span>
+          <strong>HTML / JSON</strong>
+          <p>可复制给建站工具继续生成正式页面</p>
         </article>
       </section>
 
-      <section class="admin-panel active" data-panel="products">
+      <section class="admin-panel active" data-panel="publish">
         <div class="editor-grid">
           <form class="editor-card" id="productForm">
             <div class="card-head">
               <div>
-                <span>New Product</span>
-                <h2>上新产品</h2>
+                <span>New B2B Product</span>
+                <h2>填写发布资料</h2>
               </div>
               <button class="ghost-button small" type="reset">清空</button>
             </div>
-            <div class="form-grid">
-              <label>
-                产品英文名称
-                <input name="name" required placeholder="Silicone Apple Watch Band" />
-              </label>
-              <label>
-                URL Slug
-                <input name="slug" placeholder="silicone-apple-watch-band" />
-              </label>
-              <label>
-                产品分类
-                <select name="category">
-                  <option>Apple Watch Bands</option>
-                  <option>Samsung Watch Bands</option>
-                  <option>Garmin Watch Bands</option>
-                  <option>Mi Band Straps</option>
-                  <option>3C Accessories</option>
-                </select>
-              </label>
-              <label>
-                材质
-                <select name="material">
-                  <option>Silicone</option>
-                  <option>Leather</option>
-                  <option>Nylon</option>
-                  <option>Metal</option>
-                  <option>TPU</option>
-                </select>
-              </label>
-              <label>
-                MOQ
-                <input name="moq" placeholder="300 pcs / color" />
-              </label>
-              <label>
-                交期
-                <input name="leadTime" placeholder="7-15 days after sample confirmation" />
-              </label>
-              <label class="wide">
-                兼容型号
-                <input name="models" placeholder="Apple Watch Series 10/9/8/SE, 38-49mm" />
-              </label>
-              <label class="wide">
-                图片路径
-                <input name="image" placeholder="assets/products/hero-collection.jpg" />
-              </label>
-              <label class="wide">
-                产品卖点
-                <textarea name="features" rows="4" placeholder="Soft touch silicone&#10;Custom logo available&#10;Private label packaging"></textarea>
-              </label>
-              <label class="wide">
-                SEO 描述
-                <textarea name="description" rows="4" placeholder="Factory direct smartwatch band supplier for OEM/ODM and private label wholesale buyers."></textarea>
-              </label>
-            </div>
+
+            <section class="form-section">
+              <div class="form-section-title">
+                <span>01</span>
+                <h3>产品定位</h3>
+              </div>
+              <div class="form-grid">
+                <label>
+                  产品英文名称 *
+                  <input name="name" required value="Sport Band Glow 2" placeholder="Sport Band Glow 2" />
+                </label>
+                <label>
+                  URL Slug *
+                  <input name="slug" required value="sport-band-glow-2" placeholder="sport-band-glow-2" />
+                </label>
+                <label>
+                  页面类型
+                  <select name="pageType">
+                    <option>Product Detail Page</option>
+                    <option>OEM / ODM Landing Page</option>
+                    <option>Private Label Product Page</option>
+                    <option>Wholesale Product Page</option>
+                    <option>3C Accessory Product Page</option>
+                  </select>
+                </label>
+                <label>
+                  目标买家
+                  <select name="buyerType">
+                    <option>Amazon Seller</option>
+                    <option>Brand Owner</option>
+                    <option>Distributor</option>
+                    <option>Importer</option>
+                    <option>Shopify Seller</option>
+                    <option>Retail Chain Buyer</option>
+                  </select>
+                </label>
+              </div>
+            </section>
+
+            <section class="form-section">
+              <div class="form-section-title">
+                <span>02</span>
+                <h3>产品与适配</h3>
+              </div>
+              <div class="form-grid">
+                <label>
+                  产品分类
+                  <select name="category">
+                    <option>Apple Watch Bands</option>
+                    <option>Samsung Watch Bands</option>
+                    <option>Garmin Watch Bands</option>
+                    <option>Huawei Watch Bands</option>
+                    <option>Xiaomi / Mi Band Straps</option>
+                    <option>Silicone Watch Bands</option>
+                    <option>Leather Watch Bands</option>
+                    <option>Nylon Watch Bands</option>
+                    <option>Metal Watch Bands</option>
+                    <option>Smart Watch Accessories</option>
+                    <option>Phone & Tablet Accessories</option>
+                  </select>
+                </label>
+                <label>
+                  材质
+                  <select name="material">
+                    <option>Silicone / Rubber</option>
+                    <option>Leather</option>
+                    <option>Nylon</option>
+                    <option>Metal / Stainless Steel</option>
+                    <option>TPU / PC</option>
+                    <option>Hybrid Material</option>
+                  </select>
+                </label>
+                <label>
+                  兼容型号
+                  <input name="models" value="Apple Watch 38/40/41/42/44/45/46/49mm compatible direction" placeholder="Apple Watch 38-49mm, Galaxy Watch, Garmin..." />
+                </label>
+                <label>
+                  尺寸范围
+                  <input name="sizeRange" value="38/40/41/42/44/45/46/49mm, custom size review available" placeholder="38-49mm / 20mm / 22mm..." />
+                </label>
+                <label>
+                  颜色选项
+                  <input name="colors" value="Black / Orange, Glow Cream, Outdoor Green, Sport Red" placeholder="Black, White, Orange..." />
+                </label>
+                <label>
+                  主图路径
+                  <input name="image" value="../assets/products/apple-rugged-steel-rubber.jpg" placeholder="../assets/products/apple-rugged-steel-rubber.jpg" />
+                </label>
+                <label>
+                  上传本地预览图
+                  <input name="imageFile" type="file" accept="image/*" />
+                </label>
+              </div>
+            </section>
+
+            <section class="form-section">
+              <div class="form-section-title">
+                <span>03</span>
+                <h3>供应能力与定制</h3>
+              </div>
+              <div class="form-grid">
+                <label>
+                  MOQ
+                  <input name="moq" value="Discuss by stock status and customization scope" placeholder="300 pcs / color" />
+                </label>
+                <label>
+                  样品时间
+                  <input name="sampleTime" value="Confirm after material, color and packaging review" placeholder="5-10 days" />
+                </label>
+                <label>
+                  生产时间
+                  <input name="productionTime" value="Confirm after sample and order details are approved" placeholder="15-25 days" />
+                </label>
+                <fieldset class="wide checkbox-field">
+                  <legend>定制支持</legend>
+                  <div class="checkbox-grid">
+                    <label><input type="checkbox" name="customization" value="Logo customization" checked /> Logo customization</label>
+                    <label><input type="checkbox" name="customization" value="Private label packaging" checked /> Private label packaging</label>
+                    <label><input type="checkbox" name="customization" value="Custom color review" checked /> Custom color review</label>
+                    <label><input type="checkbox" name="customization" value="Barcode and label support" /> Barcode and label support</label>
+                    <label><input type="checkbox" name="customization" value="QC sample review" checked /> QC sample review</label>
+                    <label><input type="checkbox" name="customization" value="Ready stock selection" /> Ready stock selection</label>
+                  </div>
+                </fieldset>
+                <label class="wide">
+                  包装方案
+                  <textarea name="packagingOptions" rows="3" placeholder="Retail box, sleeve card, barcode label, gift packaging...">Private label retail box, sleeve card, barcode label and buyer-ready packaging can be reviewed by project.</textarea>
+                </label>
+                <label class="wide">
+                  合规文件说明
+                  <textarea name="complianceDocs" rows="3" placeholder="RoHS, REACH, material declaration...">Material declaration, packaging label support and compliance documents can be prepared on request based on buyer requirements.</textarea>
+                </label>
+              </div>
+            </section>
+
+            <section class="form-section">
+              <div class="form-section-title">
+                <span>04</span>
+                <h3>页面内容与 SEO</h3>
+              </div>
+              <div class="form-grid">
+                <label class="wide">
+                  产品简介 *
+                  <textarea name="summary" required rows="3" placeholder="Short B2B product summary">A sport-ready Apple Watch compatible band direction for outdoor, gym and active lifestyle assortments with OEM/ODM and private label support.</textarea>
+                </label>
+                <label class="wide">
+                  买家应用场景（一行一个）
+                  <textarea name="buyerScenarios" rows="4" placeholder="Amazon seller launch kit&#10;Distributor seasonal assortment">Amazon seller launch kit for active lifestyle products
+Distributor assortment for silicone and sport band collections
+Brand owner private label packaging project</textarea>
+                </label>
+                <label class="wide">
+                  主要卖点（一行一个）
+                  <textarea name="features" rows="5" placeholder="Sport-ready comfort&#10;Private label packaging&#10;Sample-first workflow">Sport-ready comfort for active lifestyle assortments
+Private label packaging and logo support
+Sample-first workflow before bulk order
+Suitable for Amazon sellers, distributors and brand owners</textarea>
+                </label>
+                <label class="wide">
+                  FAQ（一行一个，建议 Q: ... A: ...）
+                  <textarea name="faq" rows="5" placeholder="Q: Can BOORUI support OEM packaging? A: Yes...">Q: Can BOORUI support OEM or ODM customization? A: Yes, logo, color, material and packaging details can be reviewed by project.
+Q: Can I request samples before bulk order? A: Yes, sample review is recommended before confirming bulk production.
+Q: Do you support worldwide buyers? A: BOORUI supports overseas buyers with email, WhatsApp and Alibaba storefront communication.</textarea>
+                </label>
+                <label class="wide">
+                  SEO Description
+                  <textarea name="seoDescription" rows="3" placeholder="SEO meta description">BOORUI Sport Band Glow 2 product page for B2B smartwatch band buyers. Review gallery, colors, sizes, OEM/ODM options, private label packaging and wholesale inquiry details.</textarea>
+                </label>
+              </div>
+            </section>
+
             <div class="form-actions">
-              <button class="primary-button" type="submit">保存新品草稿</button>
-              <button class="ghost-button" type="button" id="copyProductHtml">复制产品 HTML</button>
+              <button class="primary-button" type="submit">保存 B2B 草稿</button>
+              <button class="ghost-button" type="button" id="copyJson">复制 B2B JSON</button>
+              <button class="ghost-button" type="button" id="copyHtml">复制产品页 HTML</button>
+              <button class="ghost-button" type="button" id="copyInquiry">复制询盘跟进文案</button>
+              <button class="ghost-button" type="button" id="downloadJson">下载 JSON</button>
+              <button class="ghost-button" type="button" id="downloadHtml">下载 HTML</button>
             </div>
           </form>
 
           <aside class="preview-card">
             <div class="card-head">
               <div>
-                <span>Live Preview</span>
-                <h2>产品预览</h2>
+                <span>B2B Buyer Preview</span>
+                <h2>采购视角预览</h2>
               </div>
             </div>
             <article class="product-preview" id="productPreview"></article>
+            <div class="output-box">
+              <div class="card-head compact">
+                <div>
+                  <span>Generated Output</span>
+                  <h2>生成结果</h2>
+                </div>
+              </div>
+              <textarea id="outputText" rows="12" readonly></textarea>
+            </div>
           </aside>
         </div>
       </section>
 
-      <section class="admin-panel" data-panel="blogs">
-        <div class="editor-grid">
-          <form class="editor-card" id="blogForm">
-            <div class="card-head">
-              <div>
-                <span>Blog Editor</span>
-                <h2>编辑博客</h2>
-              </div>
-              <button class="ghost-button small" type="reset">清空</button>
+      <section class="admin-panel" data-panel="drafts">
+        <article class="library-card">
+          <div class="card-head">
+            <div>
+              <span>Draft Library</span>
+              <h2>产品草稿库</h2>
             </div>
-            <div class="form-grid">
-              <label class="wide">
-                Blog Title
-                <input name="title" required placeholder="How to Choose a Smartwatch Band Supplier" />
-              </label>
-              <label>
-                URL Slug
-                <input name="slug" placeholder="how-to-choose-smartwatch-band-supplier" />
-              </label>
-              <label>
-                Target Keyword
-                <input name="keyword" placeholder="OEM smartwatch band supplier" />
-              </label>
-              <label class="wide">
-                Meta Description
-                <textarea name="meta" rows="3" placeholder="A practical sourcing guide for B2B buyers comparing OEM smartwatch band suppliers."></textarea>
-              </label>
-              <label class="wide">
-                Article Body
-                <textarea name="body" rows="12" placeholder="## Introduction&#10;Write the article section by section..."></textarea>
-              </label>
-              <label>
-                CTA Button
-                <select name="cta">
-                  <option>Get a Quote</option>
-                  <option>Ask for Product Catalog</option>
-                  <option>Send Your Requirements</option>
-                  <option>Contact Joanne</option>
-                </select>
-              </label>
-              <label>
-                Author
-                <input name="author" value="Joanne Wu" />
-              </label>
-            </div>
-            <div class="form-actions">
-              <button class="primary-button" type="submit">保存博客草稿</button>
-              <button class="ghost-button" type="button" id="copyBlogMarkdown">复制 Markdown</button>
-            </div>
-          </form>
-
-          <aside class="preview-card">
-            <div class="card-head">
-              <div>
-                <span>SEO Preview</span>
-                <h2>博客预览</h2>
-              </div>
-            </div>
-            <article class="blog-preview" id="blogPreview"></article>
-          </aside>
-        </div>
+            <button class="ghost-button small" type="button" id="clearDrafts">清空草稿</button>
+          </div>
+          <div class="draft-list" id="productDrafts"></div>
+        </article>
       </section>
 
-      <section class="admin-panel" data-panel="library">
-        <div class="library-layout">
-          <article class="library-card">
-            <div class="card-head">
-              <div>
-                <span>Draft Library</span>
-                <h2>新品草稿</h2>
-              </div>
-            </div>
-            <div class="draft-list" id="productDrafts"></div>
+      <section class="admin-panel" data-panel="help">
+        <div class="help-grid">
+          <article>
+            <span>Step 01</span>
+            <h2>先写采购判断信息</h2>
+            <p>海外 B2B 买家最先看适配型号、材质、MOQ、样品、包装、交期和定制范围，这些字段会影响预览完整度。</p>
           </article>
-          <article class="library-card">
-            <div class="card-head">
-              <div>
-                <span>Draft Library</span>
-                <h2>博客草稿</h2>
-              </div>
-            </div>
-            <div class="draft-list" id="blogDrafts"></div>
+          <article>
+            <span>Step 02</span>
+            <h2>保存本地草稿</h2>
+            <p>草稿只保存在当前浏览器本地，不会自动上传服务器。适合先整理产品资料，再批量交给建站页面生成。</p>
+          </article>
+          <article>
+            <span>Step 03</span>
+            <h2>导出正式页面资料</h2>
+            <p>复制 JSON 或 HTML 后，可以继续交给我生成正式产品页，并同步到 BOORUI 独立站和 GitHub。</p>
           </article>
         </div>
       </section>
