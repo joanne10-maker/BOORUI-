@@ -3,6 +3,33 @@
   const defaultLanguage = "en";
   const scriptPath = document.currentScript?.getAttribute("src") || "assets/language-switcher.js";
   const siteRoot = scriptPath.replace(/assets\/language-switcher\.js(?:\?.*)?$/, "");
+  const searchTargets = [
+    { label: "Apple Watch Bands", type: "Device category", href: "apple-watch-bands/", description: "Apple Watch band sourcing for 38/40/41mm, 42/44/45/49mm, S10 42mm and S10 46mm programs with silicone, leather, nylon and metal options.", keys: ["apple", "iwatch", "apple watch", "38", "40", "41", "42", "44", "45", "49", "s10", "42mm", "46mm"] },
+    { label: "Samsung Watch Bands", type: "Device category", href: "samsung-watch-bands/", description: "Galaxy Watch compatible straps for sport, daily retail, private label and wholesale sourcing.", keys: ["samsung", "galaxy", "galaxy watch"] },
+    { label: "Garmin Watch Bands", type: "Device category", href: "garmin-watch-bands/", description: "Outdoor watch band options for Garmin buyers, including nylon, silicone and sport-ready sizes.", keys: ["garmin", "outdoor", "sport", "26mm", "22mm", "20mm"] },
+    { label: "Huawei Watch Bands", type: "Device category", href: "huawei-watch-bands/", description: "Huawei Watch and Huawei Band strap directions for wearable accessory buyers.", keys: ["huawei", "huawei watch", "huawei band"] },
+    { label: "Xiaomi / Mi Band Straps", type: "Device category", href: "mi-band-straps/", description: "Xiaomi Mi Band, Redmi Watch and smart band accessory sourcing for silicone, woven, leather, metal and upgrade parts.", keys: ["xiaomi", "mi band", "redmi", "smart band"] },
+    { label: "Silicone Watch Bands", type: "Material category", href: "silicone-watch-bands/", description: "High-volume silicone and rubber watch bands for sport, waterproof, promotional and color-rich retail programs.", keys: ["silicone", "rubber", "waterproof", "sport", "soft strap"] },
+    { label: "Leather Watch Bands", type: "Material category", href: "leather-watch-bands/", description: "Leather strap sourcing for premium, office, gift-ready and private label smartwatch band collections.", keys: ["leather", "cowhide", "office", "premium", "gift"] },
+    { label: "Nylon Watch Bands", type: "Material category", href: "nylon-watch-bands/", description: "Woven nylon, sport loop and comfort-led smartwatch bands for casual, outdoor and daily retail buyers.", keys: ["nylon", "woven", "sport loop", "fabric", "comfort"] },
+    { label: "Metal Watch Bands", type: "Material category", href: "metal-watch-bands/", description: "Stainless steel, Milanese, jewelry-style and fashion metal watch bands for higher perceived value collections.", keys: ["metal", "stainless", "steel", "stainless steel", "milanese", "jewelry"] },
+    { label: "NN39 Stainless Steel Apple Watch Band", type: "Product page", href: "products/nn39-squ-metal-link-smartwatch-band/", description: "NN39 stainless steel Apple Watch band with 18mm, 20mm, 22mm and Apple Watch compatible sizes, multiple colors and BOORUI packaging support.", keys: ["nn39", "stainless steel", "link band", "metal link", "18mm", "20mm", "22mm", "apple metal", "apple stainless"] },
+    { label: "Custom Silicone Smartwatch Band", type: "Product page", href: "products/custom-silicone-smartwatch-band-636223717452/", description: "B2B silicone smartwatch band product page for OEM/ODM, color selection and private label inquiry.", keys: ["custom silicone", "silicone product", "636223717452", "rubber band"] },
+    { label: "Custom Sport Smartwatch Band", type: "Product page", href: "products/custom-sport-smartwatch-band-951421118692/", description: "Sport smartwatch band product page for wholesale sourcing, sample discussion and custom project inquiry.", keys: ["sport band", "951421118692", "rugged", "outdoor band"] },
+    { label: "Sport Band Glow 2", type: "Product page", href: "products/sport-band-glow-2/", description: "Sport band style product page with retail-style product presentation for B2B inquiry.", keys: ["glow", "sport band glow", "glow 2"] },
+    { label: "Tempo Band 46mm Tidal", type: "Product page", href: "products/tempo-band-46mm-tidal/", description: "46mm smartwatch band product page for product style review and sourcing inquiry.", keys: ["tempo", "46mm", "tidal"] },
+    { label: "OEM / ODM Service", type: "Service", href: "oem-odm-service/", description: "OEM/ODM customization service for material selection, color planning, logo, packaging, sample review and factory coordination.", keys: ["oem", "odm", "custom", "customize", "factory", "logo", "sample"] },
+    { label: "OEM & ODM Watch Bands", type: "Service", href: "oem-odm-watch-bands/", description: "OEM and ODM watch band sourcing support for global B2B buyers and custom accessory programs.", keys: ["oem watch band", "odm watch band", "manufacturer"] },
+    { label: "Private Label Watch Bands", type: "Buyer need", href: "private-label-watch-bands/", description: "Private label watch band programs with packaging, logo, barcode, brand card and buyer-ready retail presentation support.", keys: ["private label", "packaging", "logo", "brand", "barcode", "retail box"] },
+    { label: "Wholesale Smartwatch Bands", type: "Buyer need", href: "wholesale-smartwatch-bands/", description: "Wholesale smartwatch band sourcing for distributors, importers, retailers and e-commerce sellers.", keys: ["wholesale", "bulk", "distributor", "importer", "retailer"] },
+    { label: "Smart Watch Accessories", type: "3C accessories", href: "smart-watch-accessories/", description: "Wearable accessory programs covering straps, protective parts, packaging and compatible add-ons.", keys: ["accessories", "watch accessories", "smart watch accessories", "protective"] },
+    { label: "Phone & Tablet Accessories", type: "3C accessories", href: "phone-accessories/", description: "Phone cases, tablet cases, earbuds cases, USB-C hubs and related 3C accessory sourcing for B2B buyers.", keys: ["phone", "tablet", "case", "usb", "usb-c", "3c", "earbuds"] },
+    { label: "Factory & Quality Capability", type: "Trust", href: "index.html#trust", description: "Factory direct supply, production capability, QC sample review, warehouse, team and compliance document support.", keys: ["factory", "quality", "qc", "warehouse", "certificate", "compliance", "inspection", "production"] },
+    { label: "Contact Joanne", type: "Contact", href: "contact/", description: "Contact BOORUI for quotation, sample discussion, WhatsApp, email and custom project requirements.", keys: ["contact", "email", "joanne", "quote", "inquiry", "whatsapp"] },
+    { label: "All Products", type: "Product index", href: "products/", description: "Browse BOORUI uploaded product pages, category collections and inquiry-ready product links.", keys: ["product", "products", "catalog", "all", "browse"] },
+  ];
+  window.BOORUI_SITE_ROOT = siteRoot;
+  window.BOORUI_SEARCH_TARGETS = searchTargets;
   const languages = [
     { code: "en", nativeName: "English", dir: "ltr" },
     { code: "fr", nativeName: "Français", dir: "ltr" },
@@ -262,26 +289,6 @@
     const headerActions = document.querySelector(".header-actions");
     if (!headerActions || headerActions.querySelector("[data-site-search]")) return;
 
-    const searchTargets = [
-      { label: "Apple Watch Bands", href: "apple-watch-bands/", keys: ["apple", "iwatch", "apple watch", "38", "40", "41", "42", "44", "45", "49", "s10"] },
-      { label: "Samsung Watch Bands", href: "samsung-watch-bands/", keys: ["samsung", "galaxy"] },
-      { label: "Garmin Watch Bands", href: "garmin-watch-bands/", keys: ["garmin", "outdoor", "sport"] },
-      { label: "Huawei Watch Bands", href: "huawei-watch-bands/", keys: ["huawei"] },
-      { label: "Xiaomi / Mi Band Straps", href: "mi-band-straps/", keys: ["xiaomi", "mi band", "redmi"] },
-      { label: "Silicone Watch Bands", href: "silicone-watch-bands/", keys: ["silicone", "rubber", "waterproof"] },
-      { label: "Leather Watch Bands", href: "leather-watch-bands/", keys: ["leather", "cowhide", "office"] },
-      { label: "Nylon Watch Bands", href: "nylon-watch-bands/", keys: ["nylon", "woven", "sport loop"] },
-      { label: "Metal Watch Bands", href: "metal-watch-bands/", keys: ["metal", "stainless", "steel", "milanese", "jewelry"] },
-      { label: "NN39 Stainless Steel Apple Watch Band", href: "products/nn39-squ-metal-link-smartwatch-band/", keys: ["nn39", "stainless steel", "link band", "metal link"] },
-      { label: "OEM / ODM Service", href: "oem-odm-service/", keys: ["oem", "odm", "custom", "factory"] },
-      { label: "Private Label Watch Bands", href: "private-label-watch-bands/", keys: ["private label", "packaging", "logo", "brand"] },
-      { label: "Wholesale Smartwatch Bands", href: "wholesale-smartwatch-bands/", keys: ["wholesale", "bulk", "distributor"] },
-      { label: "Smart Watch Accessories", href: "smart-watch-accessories/", keys: ["accessories", "watch accessories"] },
-      { label: "Phone & Tablet Accessories", href: "phone-accessories/", keys: ["phone", "tablet", "case", "usb", "3c"] },
-      { label: "All Products", href: "products/", keys: ["product", "products", "catalog", "all"] },
-      { label: "Contact Joanne", href: "contact/", keys: ["contact", "email", "joanne", "quote", "inquiry"] },
-    ];
-
     const form = document.createElement("form");
     form.className = "site-search";
     form.setAttribute("role", "search");
@@ -303,12 +310,7 @@
         input?.focus();
         return;
       }
-      const target =
-        searchTargets.find((item) => item.label.toLowerCase() === query) ||
-        searchTargets.find((item) => item.keys.some((key) => query.includes(key) || key.includes(query))) ||
-        searchTargets.find((item) => item.label === "All Products");
-
-      window.location.href = `${siteRoot}${target.href}`;
+      window.location.href = `${siteRoot}search/?q=${encodeURIComponent(input.value.trim())}`;
     });
 
     headerActions.insertBefore(form, headerActions.firstElementChild);
