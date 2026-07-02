@@ -1,4 +1,7 @@
 {
+  "installCommand": "echo BOORUI static site",
+  "buildCommand": "echo BOORUI static site",
+  "outputDirectory": ".",
   "cleanUrls": true,
   "trailingSlash": true,
   "headers": [
