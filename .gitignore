@@ -15,3 +15,4 @@ OPEN-*.bat
 OPEN-*.html
 START-LOCAL-PREVIEW.bat
 _screen*.png
+push-boorui-live.*
