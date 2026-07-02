@@ -1,6 +1,8 @@
 (function () {
   const storageKey = "boorui-language";
   const defaultLanguage = "en";
+  const scriptPath = document.currentScript?.getAttribute("src") || "assets/language-switcher.js";
+  const siteRoot = scriptPath.replace(/assets\/language-switcher\.js(?:\?.*)?$/, "");
   const languages = [
     { code: "en", nativeName: "English", dir: "ltr" },
     { code: "fr", nativeName: "Français", dir: "ltr" },
@@ -256,7 +258,64 @@
     });
   }
 
+  function initSiteSearch() {
+    const headerActions = document.querySelector(".header-actions");
+    if (!headerActions || headerActions.querySelector("[data-site-search]")) return;
+
+    const searchTargets = [
+      { label: "Apple Watch Bands", href: "apple-watch-bands/", keys: ["apple", "iwatch", "apple watch", "38", "40", "41", "42", "44", "45", "49", "s10"] },
+      { label: "Samsung Watch Bands", href: "samsung-watch-bands/", keys: ["samsung", "galaxy"] },
+      { label: "Garmin Watch Bands", href: "garmin-watch-bands/", keys: ["garmin", "outdoor", "sport"] },
+      { label: "Huawei Watch Bands", href: "huawei-watch-bands/", keys: ["huawei"] },
+      { label: "Xiaomi / Mi Band Straps", href: "mi-band-straps/", keys: ["xiaomi", "mi band", "redmi"] },
+      { label: "Silicone Watch Bands", href: "silicone-watch-bands/", keys: ["silicone", "rubber", "waterproof"] },
+      { label: "Leather Watch Bands", href: "leather-watch-bands/", keys: ["leather", "cowhide", "office"] },
+      { label: "Nylon Watch Bands", href: "nylon-watch-bands/", keys: ["nylon", "woven", "sport loop"] },
+      { label: "Metal Watch Bands", href: "metal-watch-bands/", keys: ["metal", "stainless", "steel", "milanese", "jewelry"] },
+      { label: "NN39 Stainless Steel Apple Watch Band", href: "products/nn39-squ-metal-link-smartwatch-band/", keys: ["nn39", "stainless steel", "link band", "metal link"] },
+      { label: "OEM / ODM Service", href: "oem-odm-service/", keys: ["oem", "odm", "custom", "factory"] },
+      { label: "Private Label Watch Bands", href: "private-label-watch-bands/", keys: ["private label", "packaging", "logo", "brand"] },
+      { label: "Wholesale Smartwatch Bands", href: "wholesale-smartwatch-bands/", keys: ["wholesale", "bulk", "distributor"] },
+      { label: "Smart Watch Accessories", href: "smart-watch-accessories/", keys: ["accessories", "watch accessories"] },
+      { label: "Phone & Tablet Accessories", href: "phone-accessories/", keys: ["phone", "tablet", "case", "usb", "3c"] },
+      { label: "All Products", href: "products/", keys: ["product", "products", "catalog", "all"] },
+      { label: "Contact Joanne", href: "contact/", keys: ["contact", "email", "joanne", "quote", "inquiry"] },
+    ];
+
+    const form = document.createElement("form");
+    form.className = "site-search";
+    form.setAttribute("role", "search");
+    form.setAttribute("data-site-search", "");
+    form.innerHTML = `
+      <label class="sr-only" for="boorui-site-search">Search BOORUI products</label>
+      <input id="boorui-site-search" type="search" name="q" list="boorui-search-suggestions" placeholder="Search products" autocomplete="off" aria-label="Search BOORUI products" />
+      <button type="submit" aria-label="Search"><span>Search</span></button>
+      <datalist id="boorui-search-suggestions">
+        ${searchTargets.map((item) => `<option value="${item.label}"></option>`).join("")}
+      </datalist>
+    `;
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const input = form.querySelector("input");
+      const query = input?.value.trim().toLowerCase() || "";
+      if (!query) {
+        input?.focus();
+        return;
+      }
+      const target =
+        searchTargets.find((item) => item.label.toLowerCase() === query) ||
+        searchTargets.find((item) => item.keys.some((key) => query.includes(key) || key.includes(query))) ||
+        searchTargets.find((item) => item.label === "All Products");
+
+      window.location.href = `${siteRoot}${target.href}`;
+    });
+
+    headerActions.insertBefore(form, headerActions.firstElementChild);
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
+    initSiteSearch();
     initSwitcher();
     initHreflang();
     setLanguage(getInitialLanguage());
