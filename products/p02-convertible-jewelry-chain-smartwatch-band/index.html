@@ -101,8 +101,8 @@
 
       .product-detail-page .pdp-gallery-main {
         grid-column: 2;
-        grid-row: 1 / span 3;
-        min-height: clamp(520px, 52vw, 760px);
+        grid-row: 2 / span 3;
+        min-height: clamp(420px, 42vw, 620px);
         border-radius: 0;
         background: #f5f5f3;
       }
@@ -117,6 +117,52 @@
         object-position: center;
         padding: clamp(6px, 1.6vw, 24px);
         filter: none;
+      }
+
+      .product-detail-page .pdp-video-window {
+        position: relative;
+        grid-column: 2;
+        grid-row: 1;
+        overflow: hidden;
+        min-height: clamp(360px, 36vw, 540px);
+        border: 1px solid rgba(22, 22, 18, 0.08);
+        background: #f5f5f3;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+      }
+
+      .product-detail-page .pdp-video-window img {
+        width: 100%;
+        height: 100%;
+        min-height: clamp(360px, 36vw, 540px);
+        object-fit: cover;
+        display: block;
+      }
+
+      .product-detail-page .video-badge {
+        position: absolute;
+        left: 18px;
+        bottom: 18px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: rgba(15, 15, 15, 0.78);
+        color: #fff;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        backdrop-filter: blur(10px);
+      }
+
+      .product-detail-page .video-badge::before {
+        content: "";
+        width: 0;
+        height: 0;
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+        border-left: 9px solid #fff;
       }
 
       .product-detail-page .gallery-thumb {
@@ -638,6 +684,14 @@
           grid-row: auto;
           min-height: 360px;
         }
+        .product-detail-page .pdp-video-window {
+          grid-column: auto;
+          grid-row: auto;
+          min-height: 360px;
+        }
+        .product-detail-page .pdp-video-window img {
+          min-height: 360px;
+        }
         .product-detail-page .gallery-thumb {
           display: inline-block;
           width: calc(33.333% - 10px);
@@ -711,13 +765,14 @@
     <main>
       <section class="pdp-hero product-commerce-hero">
         <div class="pdp-gallery product-commerce-gallery" aria-label="Product gallery">
-          <figure class="pdp-gallery-main">
-            <img id="mainProductImage" src="../../assets/products/p02-jewelry-chain/p02-video-preview.webp" alt="P02 convertible jewelry chain smartwatch band animated product preview" />
+          <figure class="pdp-video-window" aria-label="P02 product video preview">
+            <img src="../../assets/products/p02-jewelry-chain/p02-video-preview.webp" alt="P02 convertible jewelry chain smartwatch band product video preview" />
+            <span class="video-badge">Product Video</span>
           </figure>
-          <button class="gallery-thumb active" type="button" data-gallery-image="../../assets/products/p02-jewelry-chain/p02-video-preview.webp" data-gallery-alt="P02 convertible jewelry chain smartwatch band animated product preview">
-            <img src="../../assets/products/p02-jewelry-chain/p02-video-preview.webp" alt="P02 product video preview thumbnail" />
-          </button>
-          <button class="gallery-thumb" type="button" data-gallery-image="../../assets/products/p02-jewelry-chain/p02-main-flatlay.jpg" data-gallery-alt="P02 convertible jewelry chain smartwatch band main product display">
+          <figure class="pdp-gallery-main">
+            <img id="mainProductImage" src="../../assets/products/p02-jewelry-chain/p02-main-flatlay.jpg" alt="P02 convertible jewelry chain smartwatch band main product display" />
+          </figure>
+          <button class="gallery-thumb active" type="button" data-gallery-image="../../assets/products/p02-jewelry-chain/p02-main-flatlay.jpg" data-gallery-alt="P02 convertible jewelry chain smartwatch band main product display">
             <img src="../../assets/products/p02-jewelry-chain/p02-main-flatlay.jpg" alt="P02 jewelry chain smartwatch band flat lay thumbnail" />
           </button>
           <button class="gallery-thumb" type="button" data-gallery-image="../../assets/products/p02-jewelry-chain/p02-wrist-silver.jpg" data-gallery-alt="P02 jewelry chain smartwatch band wrist wearing view">
@@ -742,28 +797,6 @@
           </div>
 
           <div class="pdp-options">
-            <div>
-              <span class="option-label">Style / product view</span>
-              <div class="color-attachments" aria-label="P02 product view options">
-                <button class="color-attachment active" type="button" data-option-label="Video Preview" data-gallery-image="../../assets/products/p02-jewelry-chain/p02-video-preview.webp" data-gallery-alt="P02 jewelry chain smartwatch band animated product preview">
-                  <img src="../../assets/products/p02-jewelry-chain/p02-video-preview.webp" alt="P02 animated preview attachment" />
-                  <span>Preview</span>
-                </button>
-                <button class="color-attachment" type="button" data-option-label="Flat Lay Display" data-gallery-image="../../assets/products/p02-jewelry-chain/p02-main-flatlay.jpg" data-gallery-alt="P02 jewelry chain smartwatch band flat lay display">
-                  <img src="../../assets/products/p02-jewelry-chain/p02-main-flatlay.jpg" alt="P02 flat lay attachment" />
-                  <span>Display</span>
-                </button>
-                <button class="color-attachment" type="button" data-option-label="Wrist Wearing" data-gallery-image="../../assets/products/p02-jewelry-chain/p02-wrist-silver.jpg" data-gallery-alt="P02 jewelry chain smartwatch band wrist wearing view">
-                  <img src="../../assets/products/p02-jewelry-chain/p02-wrist-silver.jpg" alt="P02 wrist wearing attachment" />
-                  <span>Wrist</span>
-                </button>
-                <button class="color-attachment" type="button" data-option-label="Connector Close View" data-gallery-image="../../assets/products/p02-jewelry-chain/p02-close-fit.jpg" data-gallery-alt="P02 jewelry chain band connector close view">
-                  <img src="../../assets/products/p02-jewelry-chain/p02-close-fit.jpg" alt="P02 connector close attachment" />
-                  <span>Close</span>
-                </button>
-              </div>
-              <p class="selected-option">Selected for inquiry: <strong id="selectedColor">Video Preview</strong></p>
-            </div>
             <div>
               <span class="option-label">Convertible connector fit</span>
               <div class="case-options" aria-label="Convertible connector fit options">
@@ -958,23 +991,10 @@
         });
       });
 
-      document.querySelectorAll(".color-attachment[data-gallery-image]").forEach((button) => {
-        button.addEventListener("click", () => {
-          const image = document.querySelector("#mainProductImage");
-          image.src = button.dataset.galleryImage;
-          image.alt = button.dataset.galleryAlt;
-          document.querySelectorAll(".color-attachment").forEach((item) => item.classList.remove("active"));
-          document.querySelectorAll(".gallery-thumb[data-gallery-image]").forEach((item) => item.classList.remove("active"));
-          button.classList.add("active");
-          document.querySelector("#selectedColor").textContent = button.dataset.optionLabel;
-        });
-      });
-
       document.querySelectorAll(".option-pills [data-option-label]").forEach((button) => {
         button.addEventListener("click", () => {
           button.closest(".option-pills").querySelectorAll("[data-option-label]").forEach((item) => item.classList.remove("active"));
           button.classList.add("active");
-          document.querySelector("#selectedColor").textContent = button.dataset.optionLabel;
         });
       });
     </script>
