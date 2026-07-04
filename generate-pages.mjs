@@ -1,4 +1,4 @@
-﻿import fs from "node:fs/promises";
+import fs from "node:fs/promises";
 import path from "node:path";
 
 const contactEmail = "joannexiaoxiao@gmail.com";
@@ -1023,12 +1023,6 @@ function productDetailShowcase(page) {
       text: "Sport-ready Apple Watch compatible band direction for active lifestyle assortments.",
       image: "assets/products/apple-rugged-steel-rubber.jpg",
       href: "products/sport-band-glow-2/",
-    },
-    {
-      title: "Tempo Sport Band 46mm - Tidal",
-      text: "Single product page for 46mm sport band buyers, sample review and private label discussion.",
-      image: "assets/products/apple-sports-hand-strap.jpg",
-      href: "products/tempo-band-46mm-tidal/",
     },
     {
       title: "Sport Silicone Smartwatch Band",
