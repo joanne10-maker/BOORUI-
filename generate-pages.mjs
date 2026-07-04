@@ -1018,18 +1018,6 @@ function productDetailShowcase(page) {
   if (page.slug !== "products") return "";
   const prefix = relative(page.slug);
   const products = [
-    {
-      title: "Sport Band Glow 2",
-      text: "Sport-ready Apple Watch compatible band direction for active lifestyle assortments.",
-      image: "assets/products/apple-rugged-steel-rubber.jpg",
-      href: "products/sport-band-glow-2/",
-    },
-    {
-      title: "Sport Silicone Smartwatch Band",
-      text: "Individual smartwatch band page prepared for OEM/ODM, wholesale and private label inquiry.",
-      image: "assets/products/apple-rugged-steel-rubber.jpg",
-      href: "products/custom-sport-smartwatch-band-951421118692/",
-    },
   ];
 
   return `
@@ -1193,7 +1181,6 @@ function pageHtml(page) {
                 <a href="${relative(page.slug)}smart-watch-accessories/">Smart Watch Accessories</a>
                 <a href="${relative(page.slug)}phone-accessories/">Phone & Tablet Accessories</a>
                 <a href="${relative(page.slug)}products/">Hot Product Gallery</a>
-                <a href="${relative(page.slug)}products/sport-band-glow-2/">Sport Band Glow 2</a>
               </section>
               <section>
                 <h3>Priority Markets</h3>
