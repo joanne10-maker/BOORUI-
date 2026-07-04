@@ -52,7 +52,7 @@
 
     if (!list) return;
     if (input) input.value = query;
-    if (title) title.textContent = query ? `Search results for "${query}"` : "Search BOORUI products and services";
+    if (title) title.textContent = query ? `Search results for "${query}"` : "Search BOORUI categories and services";
 
     const ranked = targets
       .map((item) => ({ ...item, score: scoreItem(item, query) }))
@@ -63,8 +63,8 @@
 
     if (meta) {
       meta.textContent = query
-        ? `${results.length} helpful match${results.length === 1 ? "" : "es"} found. Try product model, material, size, device, packaging or buyer need.`
-        : "Type any product model, material, device, size, packaging requirement or service need.";
+        ? `${results.length} helpful match${results.length === 1 ? "" : "es"} found. Try device category, material line, size range, packaging or buyer need.`
+        : "Type a device category, material line, size range, packaging requirement or service need.";
     }
 
     list.innerHTML = results
