@@ -2211,7 +2211,7 @@ html[dir="rtl"] .inquiry-form textarea {
 }
 
 .about-section + .faq-section {
-  padding-top: clamp(18px, 2.4vw, 34px);
+  padding-top: clamp(6px, 1vw, 14px);
 }
 
 .hot-products {
@@ -4076,8 +4076,8 @@ html[dir="rtl"] .inquiry-form textarea {
 
 .about-section {
   display: block;
-  padding-top: clamp(30px, 3.4vw, 48px);
-  padding-bottom: clamp(14px, 1.8vw, 26px);
+  padding-top: clamp(24px, 2.6vw, 36px);
+  padding-bottom: 0;
   background: #fff;
 }
 
@@ -4088,6 +4088,10 @@ html[dir="rtl"] .inquiry-form textarea {
 .about-copy p {
   max-width: 980px;
   margin-top: 16px;
+}
+
+.about-copy p:last-child {
+  margin-bottom: 0;
 }
 
 .contact-card {
