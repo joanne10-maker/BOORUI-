@@ -4298,21 +4298,28 @@ details p {
 .inquiry-section {
   display: grid;
   grid-template-columns: minmax(0, 0.58fr) minmax(360px, 0.88fr);
-  gap: 54px;
+  gap: clamp(28px, 3.2vw, 44px);
   align-items: start;
+  padding-top: clamp(42px, 5vw, 68px);
+  padding-bottom: clamp(36px, 4.5vw, 58px);
   background: #111;
   color: #fff;
 }
 
+.inquiry-section h2 {
+  max-width: 520px;
+  font-size: clamp(36px, 4.2vw, 58px);
+}
+
 .inquiry-copy p {
-  margin-top: 20px;
+  margin-top: 16px;
   color: #d7d0c2;
 }
 
 .contact-lines {
   display: grid;
-  gap: 12px;
-  margin-top: 30px;
+  gap: 9px;
+  margin-top: 22px;
 }
 
 .contact-lines a {
@@ -4323,8 +4330,8 @@ details p {
 .inquiry-form {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-  padding: 24px;
+  gap: 12px;
+  padding: 20px;
   background: #fff;
   color: #111;
   border-radius: var(--radius);
@@ -4350,7 +4357,7 @@ details p {
 }
 
 .inquiry-form textarea {
-  min-height: 110px;
+  min-height: 86px;
   resize: vertical;
 }
 
@@ -5171,6 +5178,16 @@ details p {
   .pdp-joanne,
   .blog-list-layout .blog-grid {
     grid-template-columns: 1fr;
+  }
+
+  .inquiry-section {
+    padding-top: 34px;
+    padding-bottom: 34px;
+    gap: 24px;
+  }
+
+  .inquiry-section h2 {
+    font-size: 34px;
   }
 
   .trust-bar {
