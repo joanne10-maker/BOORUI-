@@ -2214,6 +2214,14 @@ html[dir="rtl"] .inquiry-form textarea {
   padding-top: clamp(6px, 1vw, 14px);
 }
 
+.faq-section:has(+ .inquiry-section) {
+  padding-bottom: clamp(14px, 1.8vw, 28px);
+}
+
+.faq-section + .inquiry-section {
+  padding-top: clamp(42px, 5vw, 68px);
+}
+
 .hot-products {
   background: #f7f7f4;
 }
