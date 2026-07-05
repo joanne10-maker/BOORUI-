@@ -1212,7 +1212,7 @@ html[dir="rtl"] .inquiry-form textarea {
   grid-template-columns: minmax(320px, 0.82fr) minmax(0, 1.18fr);
   gap: clamp(30px, 4.2vw, 76px);
   align-items: start;
-  padding-bottom: clamp(32px, 4vw, 54px);
+  padding-bottom: clamp(18px, 2.2vw, 30px);
   background:
     linear-gradient(135deg, #f7f6f1 0%, #fff 46%, #f1eee7 100%);
   border-bottom: 1px solid var(--line);
@@ -1312,7 +1312,7 @@ html[dir="rtl"] .inquiry-form textarea {
 .advantage-process-proof img {
   display: block;
   width: 100%;
-  aspect-ratio: 1.34 / 1;
+  aspect-ratio: 1.18 / 1;
   object-fit: cover;
   object-position: center top;
 }
@@ -1328,8 +1328,8 @@ html[dir="rtl"] .inquiry-form textarea {
 .advantage-grid article {
   display: grid;
   align-content: start;
-  min-height: 292px;
-  padding: clamp(16px, 2vw, 24px);
+  min-height: 246px;
+  padding: clamp(14px, 1.55vw, 20px);
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   background:
@@ -1337,7 +1337,7 @@ html[dir="rtl"] .inquiry-form textarea {
 }
 
 .advantage-card-media {
-  margin: 0 0 clamp(18px, 2vw, 24px);
+  margin: 0 0 clamp(14px, 1.4vw, 18px);
   overflow: hidden;
   border-radius: 8px;
   background: #efede5;
@@ -1346,7 +1346,7 @@ html[dir="rtl"] .inquiry-form textarea {
 .advantage-card-media img {
   display: block;
   width: 100%;
-  aspect-ratio: 1.5 / 1;
+  aspect-ratio: 1.78 / 1;
   object-fit: cover;
   object-position: center;
   transition: transform 0.35s ease;
@@ -1377,7 +1377,7 @@ html[dir="rtl"] .inquiry-form textarea {
   grid-template-columns: minmax(300px, 0.92fr) minmax(0, 1.08fr);
   column-gap: clamp(24px, 3vw, 46px);
   align-items: center;
-  min-height: 240px;
+  min-height: 190px;
   background:
     linear-gradient(135deg, rgba(17, 17, 17, 0.96), rgba(52, 43, 27, 0.95));
   color: #fffaf0;
@@ -1390,14 +1390,14 @@ html[dir="rtl"] .inquiry-form textarea {
 }
 
 .advantage-grid article:last-child .advantage-card-media img {
-  aspect-ratio: 1.72 / 1;
+  aspect-ratio: 2.15 / 1;
   object-position: center 58%;
 }
 
 .advantage-grid h3 {
   max-width: 520px;
-  margin: 14px 0 12px;
-  font-size: clamp(23px, 2vw, 34px);
+  margin: 10px 0 10px;
+  font-size: clamp(21px, 1.75vw, 30px);
   line-height: 1.08;
   letter-spacing: 0;
 }
@@ -4935,7 +4935,7 @@ details p {
     grid-template-columns: 1fr;
     gap: 26px;
     padding-top: 46px;
-    padding-bottom: 30px;
+    padding-bottom: 22px;
   }
 
   .advantage-lead {
@@ -4971,7 +4971,7 @@ details p {
   }
 
   .advantage-process-proof img {
-    aspect-ratio: 1.2 / 1;
+    aspect-ratio: 1.1 / 1;
   }
 
   .advantage-grid {
@@ -5002,7 +5002,7 @@ details p {
 
   .advantage-card-media img,
   .advantage-grid article:last-child .advantage-card-media img {
-    aspect-ratio: 1.55 / 1;
+    aspect-ratio: 1.65 / 1;
   }
 
   .advantage-grid h3 {
