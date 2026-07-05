@@ -2210,6 +2210,10 @@ html[dir="rtl"] .inquiry-form textarea {
   background: #fff;
 }
 
+.about-section + .faq-section {
+  padding-top: clamp(18px, 2.4vw, 34px);
+}
+
 .hot-products {
   background: #f7f7f4;
 }
@@ -4073,7 +4077,7 @@ html[dir="rtl"] .inquiry-form textarea {
 .about-section {
   display: block;
   padding-top: clamp(30px, 3.4vw, 48px);
-  padding-bottom: clamp(40px, 4vw, 58px);
+  padding-bottom: clamp(14px, 1.8vw, 26px);
   background: #fff;
 }
 
