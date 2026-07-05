@@ -1212,7 +1212,7 @@ html[dir="rtl"] .inquiry-form textarea {
   grid-template-columns: minmax(320px, 0.82fr) minmax(0, 1.18fr);
   gap: clamp(30px, 4.2vw, 76px);
   align-items: start;
-  padding-bottom: clamp(18px, 2.2vw, 30px);
+  padding-bottom: clamp(8px, 1.2vw, 18px);
   background:
     linear-gradient(135deg, #f7f6f1 0%, #fff 46%, #f1eee7 100%);
   border-bottom: 1px solid var(--line);
@@ -1301,7 +1301,7 @@ html[dir="rtl"] .inquiry-form textarea {
 }
 
 .advantage-process-proof {
-  margin: clamp(18px, 2.6vw, 30px) 0 0;
+  margin: clamp(14px, 2vw, 22px) 0 0;
   overflow: hidden;
   border: 1px solid rgba(17, 17, 17, 0.1);
   border-radius: 10px;
@@ -1312,7 +1312,7 @@ html[dir="rtl"] .inquiry-form textarea {
 .advantage-process-proof img {
   display: block;
   width: 100%;
-  aspect-ratio: 1.18 / 1;
+  aspect-ratio: 0.98 / 1;
   object-fit: cover;
   object-position: center top;
 }
@@ -4947,7 +4947,7 @@ details p {
     grid-template-columns: 1fr;
     gap: 26px;
     padding-top: 46px;
-    padding-bottom: 22px;
+    padding-bottom: 12px;
   }
 
   .advantage-lead {
@@ -4983,7 +4983,7 @@ details p {
   }
 
   .advantage-process-proof img {
-    aspect-ratio: 1.1 / 1;
+    aspect-ratio: 1 / 1;
   }
 
   .advantage-grid {
