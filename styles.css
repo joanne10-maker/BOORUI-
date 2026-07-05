@@ -1377,8 +1377,8 @@ html[dir="rtl"] .inquiry-form textarea {
   grid-column: span 2;
   grid-template-columns: minmax(360px, 1.12fr) minmax(0, 0.88fr);
   column-gap: clamp(20px, 2.5vw, 34px);
-  align-items: center;
-  min-height: 224px;
+  align-items: stretch;
+  min-height: 292px;
   background:
     linear-gradient(135deg, rgba(17, 17, 17, 0.96), rgba(52, 43, 27, 0.95));
   color: #fffaf0;
@@ -1387,11 +1387,14 @@ html[dir="rtl"] .inquiry-form textarea {
 .advantage-grid article:last-child .advantage-card-media {
   margin: 0;
   grid-row: span 4;
+  min-height: 252px;
   background: #1b1b1b;
 }
 
 .advantage-grid article:last-child .advantage-card-media img {
-  aspect-ratio: 1.62 / 1;
+  height: 100%;
+  min-height: 252px;
+  aspect-ratio: auto;
   object-position: center 54%;
 }
 
@@ -5012,10 +5015,13 @@ details p {
   .advantage-grid article:last-child .advantage-card-media {
     margin-bottom: 18px;
     grid-row: auto;
+    min-height: 0;
   }
 
   .advantage-card-media img,
   .advantage-grid article:last-child .advantage-card-media img {
+    height: auto;
+    min-height: 0;
     aspect-ratio: 1.65 / 1;
   }
 
