@@ -4070,15 +4070,19 @@ html[dir="rtl"] .inquiry-form textarea {
 }
 
 .about-section {
-  display: grid;
-  grid-template-columns: minmax(0, 0.76fr) minmax(320px, 0.52fr);
-  gap: 56px;
-  align-items: center;
+  display: block;
+  padding-top: clamp(56px, 6vw, 84px);
+  padding-bottom: clamp(40px, 4vw, 58px);
   background: #fff;
 }
 
+.about-copy {
+  max-width: 1040px;
+}
+
 .about-copy p {
-  margin-top: 20px;
+  max-width: 980px;
+  margin-top: 16px;
 }
 
 .contact-card {
