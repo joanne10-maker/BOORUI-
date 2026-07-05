@@ -1301,7 +1301,8 @@ html[dir="rtl"] .inquiry-form textarea {
 }
 
 .advantage-process-proof {
-  margin: clamp(14px, 2vw, 22px) 0 0;
+  width: min(86%, 640px);
+  margin: clamp(16px, 2vw, 24px) auto 0;
   overflow: hidden;
   border: 1px solid rgba(17, 17, 17, 0.1);
   border-radius: 10px;
@@ -1312,7 +1313,7 @@ html[dir="rtl"] .inquiry-form textarea {
 .advantage-process-proof img {
   display: block;
   width: 100%;
-  aspect-ratio: 0.98 / 1;
+  aspect-ratio: 1.28 / 1;
   object-fit: cover;
   object-position: center top;
 }
@@ -4979,11 +4980,12 @@ details p {
   }
 
   .advantage-process-proof {
+    width: 100%;
     margin-top: 18px;
   }
 
   .advantage-process-proof img {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1.18 / 1;
   }
 
   .advantage-grid {
