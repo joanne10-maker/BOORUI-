@@ -1212,6 +1212,7 @@ html[dir="rtl"] .inquiry-form textarea {
   grid-template-columns: minmax(320px, 0.82fr) minmax(0, 1.18fr);
   gap: clamp(30px, 4.2vw, 76px);
   align-items: start;
+  padding-bottom: clamp(32px, 4vw, 54px);
   background:
     linear-gradient(135deg, #f7f6f1 0%, #fff 46%, #f1eee7 100%);
   border-bottom: 1px solid var(--line);
@@ -4071,7 +4072,7 @@ html[dir="rtl"] .inquiry-form textarea {
 
 .about-section {
   display: block;
-  padding-top: clamp(56px, 6vw, 84px);
+  padding-top: clamp(30px, 3.4vw, 48px);
   padding-bottom: clamp(40px, 4vw, 58px);
   background: #fff;
 }
@@ -4930,6 +4931,7 @@ details p {
     grid-template-columns: 1fr;
     gap: 26px;
     padding-top: 46px;
+    padding-bottom: 30px;
   }
 
   .advantage-lead {
