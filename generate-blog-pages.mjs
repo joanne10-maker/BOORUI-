@@ -105,7 +105,9 @@ function renderModelFitVisual() {
 }
 
 function markdownToHtml(markdown) {
-  const lines = markdown.split(/\r?\n/);
+  const sourceLines = markdown.split(/\r?\n/);
+  const articleStart = sourceLines.findIndex((line) => line.trim() === "# Article");
+  const lines = articleStart >= 0 ? sourceLines.slice(articleStart + 1) : sourceLines;
   const html = [];
   let paragraph = [];
   let list = [];
@@ -155,7 +157,8 @@ function markdownToHtml(markdown) {
     if (/^#{1,6}\s/.test(trimmed)) {
       flushParagraph();
       flushList();
-      const level = Math.min((trimmed.match(/^#+/)?.[0].length || 2) + 1, 6);
+      const rawLevel = trimmed.match(/^#+/)?.[0].length || 2;
+      const level = rawLevel === 1 ? 2 : Math.min(rawLevel, 6);
       const text = trimmed.replace(/^#{1,6}\s+/, "");
       if (text === "Blog Topic Plan" || text === "SEO Information") continue;
       html.push(`<h${level}>${inlineMarkdown(text)}</h${level}>`);
@@ -285,6 +288,7 @@ ${body}
 
 function articlePage(article, allArticles) {
   const image = `../../${articleImages[article.slug] || "assets/generated/brand-showroom.png"}`;
+  const pageClass = article.slug === "smartwatch-band-size-compatibility-guide" ? "blog-article blog-compat-guide" : "blog-article";
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -312,7 +316,7 @@ function articlePage(article, allArticles) {
     canonicalPath: `/blog/${article.slug}/`,
     body: `
     <main>
-      <article class="blog-article">
+      <article class="${pageClass}">
         <header class="blog-article-hero">
           <span>BOORUI Sourcing Guide</span>
           <h1>${escapeHtml(article.meta.h1)}</h1>
