@@ -3255,6 +3255,76 @@ html[dir="rtl"] .inquiry-form textarea {
   color: #fff;
 }
 
+.model-fit-visual {
+  margin: 34px 0;
+  padding: clamp(22px, 4vw, 34px);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 18px 48px rgba(22, 22, 18, 0.08);
+}
+
+.model-fit-intro {
+  max-width: 720px;
+}
+
+.model-fit-intro span {
+  color: #9f7735;
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.model-fit-intro h2 {
+  margin: 10px 0 10px;
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1.02;
+}
+
+.model-fit-intro p {
+  margin: 0;
+}
+
+.model-fit-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.model-fit-card {
+  display: grid;
+  grid-template-columns: 132px 1fr;
+  gap: 16px;
+  align-items: center;
+  min-height: 132px;
+  padding: 12px;
+  background: #f5f2ec;
+  border: 1px solid rgba(155, 122, 61, 0.24);
+  border-radius: 10px;
+}
+
+.model-fit-card img {
+  width: 132px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #ebe7dd;
+}
+
+.model-fit-card h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  line-height: 1.08;
+}
+
+.model-fit-card p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
 .blog-cta-panel {
   padding: clamp(28px, 5vw, 48px);
   margin-bottom: 28px;
@@ -5418,6 +5488,16 @@ details p {
   .blog-cta-panel,
   .related-posts {
     width: calc(100% - 28px);
+  }
+
+  .model-fit-grid,
+  .model-fit-card {
+    grid-template-columns: 1fr;
+  }
+
+  .model-fit-card img {
+    width: 100%;
+    aspect-ratio: 1.45;
   }
 
   .pdp-hero,

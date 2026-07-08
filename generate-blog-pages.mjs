@@ -13,6 +13,7 @@ const articleImages = {
   "how-to-choose-oem-smartwatch-band-supplier": "assets/trust/factory-machines.png",
   "silicone-vs-leather-vs-nylon-vs-metal-watch-bands": "assets/products/hero-collection.jpg",
   "private-label-watch-bands-custom-logo-packaging-guide": "assets/trust/private-label-packaging-color.jpg",
+  "smartwatch-band-size-compatibility-guide": "assets/collections/all-bands.jpg",
 };
 
 function escapeHtml(value) {
@@ -57,6 +58,52 @@ function renderTable(lines) {
     .join("")}</tbody></table></div>`;
 }
 
+function renderModelFitVisual() {
+  const cards = [
+    {
+      image: "../../assets/collections/nav-apple.png",
+      title: "Apple Watch",
+      note: "Check the case size family first: 38/40/41MM or 42/44/45/46/49MM.",
+    },
+    {
+      image: "../../assets/collections/nav-samsung.png",
+      title: "Samsung Galaxy Watch",
+      note: "Confirm 20MM or 22MM lug width before sampling or bulk quotation.",
+    },
+    {
+      image: "../../assets/collections/nav-garmin.png",
+      title: "Garmin",
+      note: "Identify QuickFit or Quick Release, then confirm 18MM, 20MM, 22MM or 26MM.",
+    },
+    {
+      image: "../../assets/collections/nav-xiaomi.png",
+      title: "Xiaomi / Mi Band",
+      note: "Match the capsule generation and strap shell before choosing material or color.",
+    },
+  ];
+
+  return `<section class="model-fit-visual" aria-label="Smartwatch band model identification visual guide">
+    <div class="model-fit-intro">
+      <span>Visual Model Check</span>
+      <h2>Start With Brand, Then Confirm Case Size or Connector</h2>
+      <p>For B2B sourcing, the safest path is not guessing by product appearance. Confirm the exact watch model, case size, strap width or connector type, then review samples before bulk production.</p>
+    </div>
+    <div class="model-fit-grid">
+      ${cards
+        .map(
+          (card) => `<article class="model-fit-card">
+            <img src="${card.image}" alt="${card.title} band compatibility reference" />
+            <div>
+              <h3>${card.title}</h3>
+              <p>${card.note}</p>
+            </div>
+          </article>`
+        )
+        .join("")}
+    </div>
+  </section>`;
+}
+
 function markdownToHtml(markdown) {
   const lines = markdown.split(/\r?\n/);
   const html = [];
@@ -82,6 +129,13 @@ function markdownToHtml(markdown) {
     if (!trimmed) {
       flushParagraph();
       flushList();
+      continue;
+    }
+
+    if (trimmed === "[[MODEL-FIT-VISUAL]]") {
+      flushParagraph();
+      flushList();
+      html.push(renderModelFitVisual());
       continue;
     }
 
