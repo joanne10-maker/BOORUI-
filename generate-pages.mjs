@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import path from "node:path";
 
 const contactEmail = "joannexiaoxiao@gmail.com";
@@ -712,7 +712,7 @@ function wholesaleSystemSection(page) {
     ["Buyer Types", "Importers", "Distributors", "Amazon Sellers", "Shopify Brands"],
   ];
   const productRails = [
-    ["Apple Watch Bestseller Range", "Silicone, leather, magnetic, metal, rhinestone and fashion styles for mainstream retail demand.", "assets/products/hero-collection.jpg"],
+    ["Apple Watch Bestseller Range", "Silicone, leather, magnetic, metal, rhinestone and fashion styles for mainstream retail demand.", "assets/blog/watch-band-size-guide.png"],
     ["Sport and Outdoor Range", "Nylon and silicone options for Garmin, Samsung and active lifestyle replacement straps.", "assets/generated/sport-silicone-garmin.png"],
     ["Private Label Packaging Range", "Logo, pouch, box and collection planning support for wholesale buyers building branded programs.", "assets/trust/private-label-packaging-color.jpg"],
   ];
@@ -1364,4 +1364,5 @@ await Promise.all(
 );
 
 console.log(`Generated ${allPages.length} BOORUI SEO pages and ${languageCodes.length} language route sets.`);
+
 

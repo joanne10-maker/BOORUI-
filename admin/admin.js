@@ -1,4 +1,4 @@
-const STORAGE_KEY = "boorui_product_admin_drafts";
+﻿const STORAGE_KEY = "boorui_product_admin_drafts";
 
 const form = document.querySelector("#productForm");
 const preview = document.querySelector("#productPreview");
@@ -55,7 +55,7 @@ function formData() {
   data.buyerScenarios = listFromText(data.buyerScenarios);
   data.faq = listFromText(data.faq);
   data.customization = checkedValues("customization");
-  data.image = imagePreviewUrl || data.image || "../assets/products/hero-collection.jpg";
+  data.image = imagePreviewUrl || data.image || "../assets/blog/watch-band-size-guide.png";
   data.updatedAt = new Date().toISOString();
   return data;
 }
@@ -247,7 +247,7 @@ function updateSeoScore(data = formData()) {
 
 function renderPreview() {
   const data = formData();
-  const fallback = "../assets/products/hero-collection.jpg";
+  const fallback = "../assets/blog/watch-band-size-guide.png";
   const customization = data.customization
     .slice(0, 5)
     .map((item) => `<span>${escapeHtml(item)}</span>`)
@@ -287,7 +287,7 @@ function renderDrafts() {
   const drafts = getDrafts();
   productCount.textContent = String(drafts.length);
   if (!drafts.length) {
-    draftList.innerHTML = `<p class="empty-state">暂无草稿。填写产品资料后点击“保存 B2B 草稿”。</p>`;
+    draftList.innerHTML = `<p class="empty-state">鏆傛棤鑽夌銆傚～鍐欎骇鍝佽祫鏂欏悗鐐瑰嚮鈥滀繚瀛?B2B 鑽夌鈥濄€?/p>`;
     return;
   }
   draftList.innerHTML = drafts
@@ -298,7 +298,7 @@ function renderDrafts() {
             <strong>${escapeHtml(draft.name)}</strong>
             <span>${escapeHtml(draft.category)} / ${escapeHtml(draft.buyerType || "B2B buyer")} / ${escapeHtml(draft.slug)}</span>
           </div>
-          <button class="ghost-button small" type="button" data-load-draft="${index}">载入</button>
+          <button class="ghost-button small" type="button" data-load-draft="${index}">杞藉叆</button>
         </div>
       `,
     )
@@ -323,7 +323,7 @@ function loadDraft(index) {
   setCheckboxes("customization", draft.customization);
   imagePreviewUrl = "";
   renderPreview();
-  showToast("草稿已载入");
+  showToast("鑽夌宸茶浇鍏?);
 }
 
 async function copyText(text, message) {
@@ -333,7 +333,7 @@ async function copyText(text, message) {
   } catch {
     outputText.value = text;
     outputText.select();
-    showToast("已放入输出框，请手动复制");
+    showToast("宸叉斁鍏ヨ緭鍑烘锛岃鎵嬪姩澶嶅埗");
   }
 }
 
@@ -376,7 +376,7 @@ form.addEventListener("submit", (event) => {
   const nextDrafts = [data, ...drafts.filter((item) => item.slug !== data.slug)].slice(0, 50);
   saveDrafts(nextDrafts);
   renderDrafts();
-  showToast("B2B 产品草稿已保存");
+  showToast("B2B 浜у搧鑽夌宸蹭繚瀛?);
 });
 
 form.addEventListener("reset", () => {
@@ -387,15 +387,15 @@ form.addEventListener("reset", () => {
 });
 
 document.querySelector("#copyJson").addEventListener("click", () => {
-  copyText(JSON.stringify(productJson(), null, 2), "B2B JSON 已复制");
+  copyText(JSON.stringify(productJson(), null, 2), "B2B JSON 宸插鍒?);
 });
 
 document.querySelector("#copyHtml").addEventListener("click", () => {
-  copyText(productHtml(), "产品页 HTML 已复制");
+  copyText(productHtml(), "浜у搧椤?HTML 宸插鍒?);
 });
 
 document.querySelector("#copyInquiry").addEventListener("click", () => {
-  copyText(inquiryText(), "询盘跟进文案已复制");
+  copyText(inquiryText(), "璇㈢洏璺熻繘鏂囨宸插鍒?);
 });
 
 document.querySelector("#downloadJson").addEventListener("click", () => {
@@ -409,10 +409,10 @@ document.querySelector("#downloadHtml").addEventListener("click", () => {
 });
 
 document.querySelector("#clearDrafts").addEventListener("click", () => {
-  if (!window.confirm("确定清空所有产品草稿吗？")) return;
+  if (!window.confirm("纭畾娓呯┖鎵€鏈変骇鍝佽崏绋垮悧锛?)) return;
   saveDrafts([]);
   renderDrafts();
-  showToast("草稿已清空");
+  showToast("鑽夌宸叉竻绌?);
 });
 
 draftList.addEventListener("click", (event) => {
@@ -423,3 +423,4 @@ draftList.addEventListener("click", (event) => {
 
 renderPreview();
 renderDrafts();
+
