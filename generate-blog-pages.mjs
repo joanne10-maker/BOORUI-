@@ -11,7 +11,7 @@ const alibabaUrl = "https://boorui.en.alibaba.com/";
 const addressEn = "No. 21, Chengdexinyuan, Dawang High-tech Zone, Dawang Subdistrict, Sihui, Zhaoqing, Guangdong, China";
 const articleImages = {
   "how-to-choose-oem-smartwatch-band-supplier": "assets/trust/factory-machines.png",
-  "silicone-vs-leather-vs-nylon-vs-metal-watch-bands": "assets/products/hero-collection.jpg",
+  "silicone-vs-leather-vs-nylon-vs-metal-watch-bands": "assets/blog/watch-band-size-guide.png",
   "private-label-watch-bands-custom-logo-packaging-guide": "assets/trust/private-label-packaging-color.jpg",
   "smartwatch-band-size-compatibility-guide": "assets/collections/all-bands.jpg",
 };
@@ -288,7 +288,12 @@ ${body}
 
 function articlePage(article, allArticles) {
   const image = `../../${articleImages[article.slug] || "assets/generated/brand-showroom.png"}`;
-  const pageClass = article.slug === "smartwatch-band-size-compatibility-guide" ? "blog-article blog-compat-guide" : "blog-article";
+  const pageClass =
+    article.slug === "smartwatch-band-size-compatibility-guide"
+      ? "blog-article blog-compat-guide"
+      : article.slug === "silicone-vs-leather-vs-nylon-vs-metal-watch-bands"
+        ? "blog-article blog-size-material-guide"
+        : "blog-article";
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
