@@ -13,7 +13,7 @@ const articleImages = {
   "how-to-choose-oem-smartwatch-band-supplier": "assets/trust/factory-machines.png",
   "silicone-vs-leather-vs-nylon-vs-metal-watch-bands": "assets/blog/watch-band-size-guide.png",
   "private-label-watch-bands-custom-logo-packaging-guide": "assets/trust/private-label-packaging-color.jpg",
-  "smartwatch-band-size-compatibility-guide": "assets/collections/all-bands.jpg",
+  "smartwatch-band-size-compatibility-guide": "assets/blog/watch-band-size-guide.png",
 };
 
 function escapeHtml(value) {
