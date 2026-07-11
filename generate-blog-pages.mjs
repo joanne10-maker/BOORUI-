@@ -240,7 +240,7 @@ function shell({ title, description, body, prefix = "../", canonicalPath = "/blo
     <meta property="og:description" content="${escapeHtml(description)}" />
     <meta property="og:type" content="article" />
     <link rel="icon" href="${prefix}assets/boorui-logo.png" />
-    <link rel="stylesheet" href="${prefix}styles.css?v=12" />
+    <link rel="stylesheet" href="${prefix}styles.css?v=13" />
     <link rel="canonical" href="${canonicalPath}" />
     <link rel="alternate" hreflang="en" href="/en${canonicalPath}" />
     <link rel="alternate" hreflang="fr" href="/fr${canonicalPath}" />
@@ -303,6 +303,22 @@ function articlePage(article, allArticles) {
           </ul>
         </section>`
       : "";
+  const materialSizePanel =
+    article.slug === "silicone-vs-leather-vs-nylon-vs-metal-watch-bands"
+      ? `<section class="material-size-panel" aria-label="Material guide size confirmation">
+          <div>
+            <span>Size Before Material</span>
+            <h2>Confirm the band size first, then select silicone, leather, nylon or metal.</h2>
+            <p>This size guide helps buyers avoid wrong lug width, adapter and connector choices before moving into material samples, packaging and private label quotation.</p>
+          </div>
+          <ul>
+            <li><strong>18MM</strong><span>Often used for slimmer lifestyle watches and compact leather, silicone or mesh replacement bands.</span></li>
+            <li><strong>20MM</strong><span>A common sourcing direction for Samsung Galaxy Watch, Amazfit, Seiko, Garmin and daily retail assortments.</span></li>
+            <li><strong>22MM</strong><span>Popular for larger sport, outdoor, nylon, silicone and metal watch band programs.</span></li>
+            <li><strong>24MM</strong><span>Best confirmed by sample because larger cases can vary by lug shape, case thickness and buckle direction.</span></li>
+          </ul>
+        </section>`
+      : "";
   const pageClass =
     article.slug === "smartwatch-band-size-compatibility-guide"
       ? "blog-article blog-compat-guide"
@@ -345,6 +361,7 @@ function articlePage(article, allArticles) {
         </header>
         <img class="blog-hero-image" src="${image}" alt="${escapeHtml(article.meta.h1)}" />
         ${sizeGuidePanel}
+        ${materialSizePanel}
         <div class="blog-article-layout">
           <div class="blog-content">
 ${article.html}

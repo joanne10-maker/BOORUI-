@@ -173,11 +173,9 @@ This structure helps buyers serve different customer reasons for purchase. One c
 
 For private label programs, packaging should match the material story. Silicone can be simple and clean. Leather and metal may need more premium packaging. Nylon may benefit from lifestyle imagery and color-focused presentation.
 
-## Mid-Article CTA
+## Need a Material Recommendation?
 
-Not sure which material mix fits your market? Send your target customer, device models and retail positioning to BOORUI. We can help recommend a material-based product selection.
-
-Button: Ask for Product Catalog
+Not sure which material mix fits your market? Send your target watch models, sales channel and retail positioning to BOORUI. We can help prepare silicone, leather, nylon and metal watch band options for sample review and quotation.
 
 ## Material Selection by Sales Channel
 
@@ -225,36 +223,6 @@ Silicone, leather, nylon and metal watch bands each serve different customer nee
 
 For B2B buyers, the most effective approach is to build a material strategy rather than choosing randomly from a catalog. Start with customer scenarios, then select materials, colors, packaging and sample inspection points.
 
-## Final CTA
+## Contact BOORUI
 
-BOORUI supplies silicone, leather, nylon, metal and magnetic smartwatch band options for global wholesale, OEM/ODM and private label programs.
-
-CTA Button: Contact Us
-
-# Image Planning and AI Prompts
-
-| Image Use | Insert Position | Caption | ALT Text | AI Image Prompt |
-|---|---|---|---|---|
-| Material lineup hero | After introduction | Four material directions help buyers build a balanced smartwatch band range. | Silicone leather nylon and metal smartwatch band material lineup | Premium product flat lay of silicone leather nylon and metal smartwatch bands, neutral background, labeled material sections, BOORUI style packaging, realistic photography |
-| Silicone testing | Silicone section | Silicone bands should be checked for surface, softness, buckle and connector fit. | Factory testing silicone smartwatch band flexibility and buckle | Factory QC desk, worker checking silicone smartwatch band flexibility and buckle strength, inspection sheet, clean lighting, realistic photo |
-| Leather close-up | Leather section | Leather bands need careful review of stitching, edge paint and lining. | Close-up leather smartwatch band stitching and edge paint | Macro shot of leather smartwatch band stitching, edge finishing, buckle, premium texture, commercial photography |
-| Nylon application | Nylon section | Nylon bands are useful for outdoor, comfort and casual collections. | Outdoor lifestyle smartwatch with nylon woven band | Outdoor lifestyle scene, smartwatch with woven nylon band on wrist, hiking gear, natural light, realistic advertising photo |
-| Metal packaging | Metal section | Metal bands need protective packaging to reduce scratch risk during shipment. | Metal smartwatch band premium packaging inspection | Premium metal smartwatch band in protective packaging, QC gloves, gift box, warehouse inspection table, realistic photo |
-
-# CTA and Popup Plan
-
-- Mid-article CTA: After "How to Build a Balanced Wholesale Range"
-  - Button: Ask for Product Catalog
-  - Link Target: Catalog download or inquiry form
-- Final CTA: After conclusion
-  - Button: Contact Us
-  - Link Target: Contact page
-
-## Inquiry Popup
-
-- Trigger Suggestion: Scroll to 40% or exit intent
-- Popup Title: Need a Material Recommendation?
-- Popup Copy: Tell us your target watch models and customer positioning. BOORUI can suggest silicone, leather, nylon or metal options for your market.
-- Required Fields: Name, Email, Phone
-- Optional Fields: Country, Sales Channel, Target Material, Estimated Quantity
-- Submit Button: Ask for Product Catalog
+BOORUI supplies silicone, leather, nylon, metal and magnetic smartwatch band options for global wholesale, OEM/ODM and private label programs. Share your target models, material direction, order quantity and packaging needs so the team can recommend a clearer sourcing path.
