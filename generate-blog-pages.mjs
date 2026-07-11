@@ -294,11 +294,12 @@ function articlePage(article, allArticles) {
           <div>
             <span>Size Guide Visual</span>
             <h2>Measure lug width first, then match the device family.</h2>
-            <p>Use the visual guide below as a quick buyer reference for 18MM, 20MM, 22MM and 24MM band planning. Apple Watch case sizes, Garmin systems, Samsung lug widths and Xiaomi capsule straps still need final model confirmation before sampling.</p>
+            <p>Use the visual guide below as a quick buyer reference for 18MM, 20MM, 22MM, 24MM and 26MM band planning. Apple Watch case sizes, Garmin systems, Samsung lug widths and Xiaomi capsule straps still need final model confirmation before sampling.</p>
           </div>
           <ul>
             <li><strong>18MM / 20MM</strong><span>Common for compact classic watches, Huawei, Amazfit, Samsung and selected Garmin models.</span></li>
             <li><strong>22MM / 24MM</strong><span>Common for larger sports, outdoor and metal band programs.</span></li>
+            <li><strong>26MM Garmin</strong><span>Used for selected large Garmin outdoor lines such as Fenix X-series, Enduro, Tactix and related QuickFit programs.</span></li>
             <li><strong>Apple Watch</strong><span>Confirm case family: 38/40/41MM, 42/44/45/46/49MM, Series 10 42MM or 46MM.</span></li>
           </ul>
         </section>`
@@ -316,6 +317,7 @@ function articlePage(article, allArticles) {
             <li><strong>20MM</strong><span>A common sourcing direction for Samsung Galaxy Watch, Amazfit, Seiko, Garmin and daily retail assortments.</span></li>
             <li><strong>22MM</strong><span>Popular for larger sport, outdoor, nylon, silicone and metal watch band programs.</span></li>
             <li><strong>24MM</strong><span>Best confirmed by sample because larger cases can vary by lug shape, case thickness and buckle direction.</span></li>
+            <li><strong>26MM</strong><span>Important for Garmin Fenix X-series, Enduro, Tactix and other large QuickFit outdoor watch band programs.</span></li>
           </ul>
         </section>`
       : "";

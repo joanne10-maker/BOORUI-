@@ -3416,6 +3416,10 @@ html[dir="rtl"] .inquiry-form textarea {
   border-radius: 12px;
 }
 
+.material-size-panel li:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
 .material-size-panel li strong {
   display: block;
   margin-bottom: 7px;
