@@ -288,6 +288,21 @@ ${body}
 
 function articlePage(article, allArticles) {
   const image = `../../${articleImages[article.slug] || "assets/generated/brand-showroom.png"}`;
+  const sizeGuidePanel =
+    article.slug === "smartwatch-band-size-compatibility-guide"
+      ? `<section class="compat-size-panel" aria-label="Watch band size guide summary">
+          <div>
+            <span>Size Guide Visual</span>
+            <h2>Measure lug width first, then match the device family.</h2>
+            <p>Use the visual guide below as a quick buyer reference for 18MM, 20MM, 22MM and 24MM band planning. Apple Watch case sizes, Garmin systems, Samsung lug widths and Xiaomi capsule straps still need final model confirmation before sampling.</p>
+          </div>
+          <ul>
+            <li><strong>18MM / 20MM</strong><span>Common for compact classic watches, Huawei, Amazfit, Samsung and selected Garmin models.</span></li>
+            <li><strong>22MM / 24MM</strong><span>Common for larger sports, outdoor and metal band programs.</span></li>
+            <li><strong>Apple Watch</strong><span>Confirm case family: 38/40/41MM, 42/44/45/46/49MM, Series 10 42MM or 46MM.</span></li>
+          </ul>
+        </section>`
+      : "";
   const pageClass =
     article.slug === "smartwatch-band-size-compatibility-guide"
       ? "blog-article blog-compat-guide"
@@ -329,6 +344,7 @@ function articlePage(article, allArticles) {
           <div class="blog-meta"><span>Target keywords: ${escapeHtml(article.meta.keywords)}</span><a href="../../index.html#inquiry" data-i18n="button.quote">Get a Quote</a></div>
         </header>
         <img class="blog-hero-image" src="${image}" alt="${escapeHtml(article.meta.h1)}" />
+        ${sizeGuidePanel}
         <div class="blog-article-layout">
           <div class="blog-content">
 ${article.html}
