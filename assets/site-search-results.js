@@ -67,6 +67,8 @@
         : "Type a device category, material line, size range, packaging requirement or service need.";
     }
 
+    const localizeHref = window.BOORUI_LOCALIZE_DIRECTORY_HREF || ((href) => href);
+
     list.innerHTML = results
       .map(
         (item) => `
@@ -76,11 +78,13 @@
               <h2>${item.label}</h2>
               <p>${item.description}</p>
             </div>
-            <a href="${root}${item.href}">Open page</a>
+            <a href="${localizeHref(`${root}${item.href}`)}">Open page</a>
           </article>
         `,
       )
       .join("");
+
+    window.BOORUI_REFRESH_LOCAL_FILE_LINKS?.();
 
     if (empty) {
       empty.hidden = !query || ranked.length > 0;

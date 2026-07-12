@@ -3,6 +3,7 @@
   const defaultLanguage = "en";
   const scriptPath = document.currentScript?.getAttribute("src") || "assets/language-switcher.js";
   const siteRoot = scriptPath.replace(/assets\/language-switcher\.js(?:\?.*)?$/, "");
+  const isLocalFile = window.location.protocol === "file:";
   const searchTargets = [
     { label: "Apple Watch Bands", type: "Device category", href: "apple-watch-bands/", description: "Apple Watch band sourcing for 38/40/41mm, 42/44/45/49mm, S10 42mm and S10 46mm programs with silicone, leather, nylon and metal options.", keys: ["apple", "iwatch", "apple watch", "38", "40", "41", "42", "44", "45", "49", "s10", "42mm", "46mm"] },
     { label: "Samsung Watch Bands", type: "Device category", href: "samsung-watch-bands/", description: "Galaxy Watch compatible straps for sport, daily retail, private label and wholesale sourcing.", keys: ["samsung", "galaxy", "galaxy watch"] },
@@ -22,6 +23,52 @@
   ];
   window.BOORUI_SITE_ROOT = siteRoot;
   window.BOORUI_SEARCH_TARGETS = searchTargets;
+
+  function localizeDirectoryHref(href) {
+    if (!isLocalFile || !href || href.startsWith("#")) return href;
+    if (/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(href)) return href;
+
+    const hashIndex = href.indexOf("#");
+    const hash = hashIndex >= 0 ? href.slice(hashIndex) : "";
+    const beforeHash = hashIndex >= 0 ? href.slice(0, hashIndex) : href;
+    const queryIndex = beforeHash.indexOf("?");
+    const query = queryIndex >= 0 ? beforeHash.slice(queryIndex) : "";
+    const path = queryIndex >= 0 ? beforeHash.slice(0, queryIndex) : beforeHash;
+
+    if (!path || path.endsWith("index.html") || /\.[a-z0-9]{2,8}$/i.test(path)) return href;
+    if (!path.endsWith("/")) return href;
+
+    return `${path}index.html${query}${hash}`;
+  }
+
+  function initLocalFileLinks() {
+    if (!isLocalFile) return;
+
+    document.querySelectorAll("a[href]").forEach((anchor) => {
+      const rawHref = anchor.getAttribute("href");
+      const fixedHref = localizeDirectoryHref(rawHref);
+      if (fixedHref !== rawHref) anchor.setAttribute("href", fixedHref);
+    });
+
+    document.querySelectorAll("form[action]").forEach((form) => {
+      const rawAction = form.getAttribute("action");
+      const fixedAction = localizeDirectoryHref(rawAction);
+      if (fixedAction !== rawAction) form.setAttribute("action", fixedAction);
+    });
+
+    document.addEventListener("click", (event) => {
+      const anchor = event.target.closest?.("a[href]");
+      if (!anchor) return;
+      const rawHref = anchor.getAttribute("href");
+      const fixedHref = localizeDirectoryHref(rawHref);
+      if (fixedHref === rawHref) return;
+      event.preventDefault();
+      window.location.href = fixedHref;
+    });
+  }
+
+  window.BOORUI_LOCALIZE_DIRECTORY_HREF = localizeDirectoryHref;
+  window.BOORUI_REFRESH_LOCAL_FILE_LINKS = initLocalFileLinks;
   const languages = [
     { code: "en", nativeName: "English", dir: "ltr" },
     { code: "fr", nativeName: "Français", dir: "ltr" },
@@ -302,7 +349,8 @@
         input?.focus();
         return;
       }
-      window.location.href = `${siteRoot}search/?q=${encodeURIComponent(input.value.trim())}`;
+      const searchPagePath = `${siteRoot}search/${isLocalFile ? "index.html" : ""}`;
+      window.location.href = `${searchPagePath}?q=${encodeURIComponent(input.value.trim())}`;
     });
 
     headerActions.insertBefore(form, headerActions.firstElementChild);
@@ -312,6 +360,7 @@
     initSiteSearch();
     initSwitcher();
     initHreflang();
+    initLocalFileLinks();
     setLanguage(getInitialLanguage());
   });
 })();
