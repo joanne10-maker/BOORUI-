@@ -1015,7 +1015,7 @@ function procurementSpecs(page) {
 }
 
 function productDetailShowcase(page) {
-  if (page.slug !== "products") return "";
+  if (!["products", "apple-watch-bands"].includes(page.slug)) return "";
   const prefix = relative(page.slug);
   const products = [
     {
@@ -1049,17 +1049,26 @@ function productDetailShowcase(page) {
       href: "products/ms14-magnetic-silicone-xiaomi-mi-band-strap/index.html",
     },
   ];
+  const appleProducts = products.filter((item) => !item.title.startsWith("MS14"));
+  const visibleProducts = page.slug === "apple-watch-bands" ? appleProducts : products;
+  const heading = page.slug === "apple-watch-bands" ? "Open Apple Watch Band Product Pages" : "Featured Product Detail Pages";
+  const eyebrow = page.slug === "apple-watch-bands" ? `<span class="eyebrow">APPLE WATCH PRODUCT SERIES</span>` : "";
+  const intro =
+    page.slug === "apple-watch-bands"
+      ? "Review uploaded BOORUI Apple Watch compatible products by material, style and buyer use, then open the detail page for sizing, packaging direction and quotation discussion."
+      : "Open individual product pages for gallery review, specifications, packaging options and direct inquiry.";
 
   return `
-      <section class="section related-products-section">
+      <section class="section related-products-section${page.slug === "apple-watch-bands" ? " apple-series-section\" id=\"product-series" : ""}">
         <div class="section-head">
-          <h2>Featured Product Detail Pages</h2>
-          <p>Open individual product pages for gallery review, specifications, packaging options and direct inquiry.</p>
+          ${eyebrow}
+          <h2>${heading}</h2>
+          <p>${intro}</p>
         </div>
-        <div class="hot-product-grid">
-          ${products
+        <div class="hot-product-grid${page.slug === "apple-watch-bands" ? " apple-series-grid" : ""}">
+          ${visibleProducts
             .map(
-              (item) => `<article><img src="${prefix}${item.image}" alt="${item.title} product page for BOORUI B2B buyers" /><h3>${item.title}</h3><p>${item.text}</p><a href="${prefix}${item.href}">View Product</a></article>`,
+              (item) => `<article><img src="${prefix}${item.image}" alt="${item.title} product page for BOORUI B2B buyers" />${page.slug === "apple-watch-bands" ? `<span class="series-tag">${item.title.includes("Jewelry") ? "Jewelry / Gift" : item.title.includes("Milanese") ? "Metal / Milanese" : item.title.includes("NN39") ? "Stainless Steel" : "Silicone / Printed"}</span>` : ""}<h3>${item.title}</h3><p>${item.text}</p><a href="${prefix}${item.href}">${page.slug === "apple-watch-bands" ? "Open Product Page" : "View Product"}</a></article>`,
             )
             .join("")}
         </div>
@@ -1258,6 +1267,7 @@ ${languageSwitcher()}
       <section class="intro-strip">
         <p>BOORUI combines retail-ready smartwatch band collections with export-oriented OEM/ODM, private label packaging and fast buyer communication.</p>
       </section>
+      ${productDetailShowcase(page)}
       ${wholesaleSystemSection(page)}
       <section class="section">
         <div class="section-head">
@@ -1269,7 +1279,6 @@ ${languageSwitcher()}
         </div>
       </section>
       ${procurementSpecs(page)}
-      ${productDetailShowcase(page)}
       ${seoIntroSection(page)}
       <section class="section subpage-advantages">
         <div class="section-head">

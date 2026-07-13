@@ -2278,6 +2278,50 @@ html[dir="rtl"] .inquiry-form textarea {
   border-bottom: 1px solid rgba(17, 17, 17, 0.36);
 }
 
+.apple-series-section {
+  padding-top: clamp(46px, 5vw, 76px);
+  padding-bottom: clamp(44px, 5vw, 72px);
+  background:
+    linear-gradient(180deg, #fff 0%, #f7f5ef 100%);
+}
+
+.apple-series-section .section-head {
+  max-width: 960px;
+  margin: 0 auto clamp(24px, 3vw, 38px);
+  text-align: center;
+}
+
+.apple-series-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(14px, 1.6vw, 22px);
+}
+
+.apple-series-grid article {
+  min-height: 100%;
+  padding: 14px;
+}
+
+.apple-series-grid img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  padding: 0;
+  background: #f3f0e8;
+}
+
+.apple-series-grid .series-tag {
+  display: inline-flex;
+  margin: 4px 0 10px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.apple-series-grid h3 {
+  font-size: clamp(20px, 1.8vw, 26px);
+}
+
 .product-category-stack {
   display: grid;
   gap: clamp(28px, 4vw, 52px);
