@@ -1018,6 +1018,36 @@ function productDetailShowcase(page) {
   if (page.slug !== "products") return "";
   const prefix = relative(page.slug);
   const products = [
+    {
+      title: "P03 Printed Silicone Apple Watch Band",
+      image: "assets/products/p03-printed-waist-silicone/p03-main-brown-check-wrist.jpg",
+      text: "Plaid waist-shape silicone Apple Watch band for colorful wholesale ranges, sample review and private label packaging.",
+      href: "products/p03-printed-waist-silicone-apple-watch-band/index.html",
+    },
+    {
+      title: "P02 Convertible Jewelry Chain Smartwatch Band",
+      image: "assets/products/p02-jewelry-chain/p02-main-flatlay.jpg",
+      text: "Decorative chain-style smartwatch band direction for Apple, Huawei and OPPO compatible accessory sourcing.",
+      href: "products/p02-convertible-jewelry-chain-smartwatch-band/index.html",
+    },
+    {
+      title: "P01 Stainless Steel Milanese Loop Apple Watch Band",
+      image: "assets/products/p01-milanese-loop/p01-black-watch-hero.png",
+      text: "Metal Apple Watch band page for stainless steel sourcing, packaging planning and B2B inquiry.",
+      href: "products/p01-stainless-steel-milanese-loop-apple-watch-band/index.html",
+    },
+    {
+      title: "NN39 Stainless Steel Apple Watch Band",
+      image: "assets/products/nn39-squ-metal-link/nn39-apple-main.png",
+      text: "Apple Watch stainless steel link band for 18MM, 20MM and 22MM sourcing with color assortment planning.",
+      href: "products/nn39-squ-metal-link-smartwatch-band/index.html",
+    },
+    {
+      title: "MS14 Magnetic Silicone Xiaomi Mi Band Strap",
+      image: "assets/products/ms14-magnetic-silicone-mi-band/ms14-color-hero.jpg",
+      text: "Magnetic silicone strap for Xiaomi Smart Band 8, 9 and 10 compatible retail and wholesale programs.",
+      href: "products/ms14-magnetic-silicone-xiaomi-mi-band-strap/index.html",
+    },
   ];
 
   return `

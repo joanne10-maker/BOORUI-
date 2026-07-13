@@ -67,6 +67,12 @@
     });
   }
 
+  function initProductNavLinks() {
+    document.querySelectorAll('a[data-i18n="nav.products"]').forEach((anchor) => {
+      anchor.setAttribute("href", `${siteRoot}products/index.html#product-pages`);
+    });
+  }
+
   window.BOORUI_LOCALIZE_DIRECTORY_HREF = localizeDirectoryHref;
   window.BOORUI_REFRESH_LOCAL_FILE_LINKS = initLocalFileLinks;
   const languages = [
@@ -360,6 +366,7 @@
     initSiteSearch();
     initSwitcher();
     initHreflang();
+    initProductNavLinks();
     initLocalFileLinks();
     setLanguage(getInitialLanguage());
   });
