@@ -1020,55 +1020,101 @@ function productDetailShowcase(page) {
   const products = [
     {
       title: "P03 Printed Silicone Apple Watch Band",
+      tag: "Apple Watch / Silicone",
       image: "assets/products/p03-printed-waist-silicone/p03-main-brown-check-wrist.jpg",
       text: "Plaid waist-shape silicone Apple Watch band for colorful wholesale ranges, sample review and private label packaging.",
       href: "products/p03-printed-waist-silicone-apple-watch-band/index.html",
     },
     {
       title: "P02 Convertible Jewelry Chain Smartwatch Band",
+      tag: "Apple / Huawei / OPPO",
       image: "assets/products/p02-jewelry-chain/p02-main-flatlay.jpg",
       text: "Decorative chain-style smartwatch band direction for Apple, Huawei and OPPO compatible accessory sourcing.",
       href: "products/p02-convertible-jewelry-chain-smartwatch-band/index.html",
     },
     {
       title: "P01 Stainless Steel Milanese Loop Apple Watch Band",
+      tag: "Apple Watch / Metal",
       image: "assets/products/p01-milanese-loop/p01-black-watch-hero.png",
-      text: "Metal Apple Watch band page for stainless steel sourcing, packaging planning and B2B inquiry.",
+      text: "Stainless steel Milanese Loop page for Apple Watch metal sourcing, packaging planning and B2B inquiry.",
       href: "products/p01-stainless-steel-milanese-loop-apple-watch-band/index.html",
     },
     {
       title: "NN39 Stainless Steel Apple Watch Band",
+      tag: "Apple Watch / Stainless Steel",
       image: "assets/products/nn39-squ-metal-link/nn39-apple-main.png",
       text: "Apple Watch stainless steel link band for 18MM, 20MM and 22MM sourcing with color assortment planning.",
       href: "products/nn39-squ-metal-link-smartwatch-band/index.html",
     },
     {
       title: "MS14 Magnetic Silicone Xiaomi Mi Band Strap",
+      tag: "Xiaomi Mi Band / Magnetic Silicone",
       image: "assets/products/ms14-magnetic-silicone-mi-band/ms14-color-hero.jpg",
       text: "Magnetic silicone strap for Xiaomi Smart Band 8, 9 and 10 compatible retail and wholesale programs.",
       href: "products/ms14-magnetic-silicone-xiaomi-mi-band-strap/index.html",
     },
+    {
+      title: "Silicone Smartwatch Band BR-636223717452",
+      tag: "Apple Watch / Silicone",
+      image: "assets/products/apple-rose-silicone.jpg",
+      text: "Single silicone smartwatch band product page for sample review, fit confirmation, OEM/ODM and private label inquiry.",
+      href: "products/custom-silicone-smartwatch-band-636223717452/index.html",
+    },
+    {
+      title: "Sport Silicone Smartwatch Band",
+      tag: "Sport / Rugged Silicone",
+      image: "assets/products/apple-rugged-steel-rubber.jpg",
+      text: "Sport-ready smartwatch band page prepared for wholesale sourcing, OEM/ODM programs and active lifestyle assortments.",
+      href: "products/custom-sport-smartwatch-band-951421118692/index.html",
+    },
+    {
+      title: "Sport Band Glow 2",
+      tag: "Outdoor / Sport",
+      image: "assets/products/apple-rugged-steel-rubber.jpg",
+      text: "Rugged Apple Watch compatible band direction for outdoor, gym and fast-moving active lifestyle collections.",
+      href: "products/sport-band-glow-2/index.html",
+    },
+    {
+      title: "Tempo Sport Band 46mm - Tidal",
+      tag: "Apple Watch / 46mm Sport",
+      image: "assets/products/apple-sports-hand-strap.jpg",
+      text: "Apple Watch sport band page prepared for 46mm buyers, sample review, color direction and private label discussion.",
+      href: "products/tempo-band-46mm-tidal/index.html",
+    },
+    {
+      title: "Custom Smartwatch Band BR-927211100942",
+      tag: "Custom Project / OEM",
+      image: "assets/products/apple-rugged-steel-rubber.jpg",
+      text: "Buyer-provided offer ID product page for sample review, fit confirmation, OEM customization and packaging discussion.",
+      href: "products/custom-smartwatch-band-927211100942/index.html",
+    },
   ];
-  const appleProducts = products.filter((item) => !item.title.startsWith("MS14"));
+  const appleProducts = products.filter((item) => !item.title.startsWith("MS14") && !item.title.startsWith("Custom Smartwatch"));
   const visibleProducts = page.slug === "apple-watch-bands" ? appleProducts : products;
-  const heading = page.slug === "apple-watch-bands" ? "Open Apple Watch Band Product Pages" : "Featured Product Detail Pages";
-  const eyebrow = page.slug === "apple-watch-bands" ? `<span class="eyebrow">APPLE WATCH PRODUCT SERIES</span>` : "";
+  const heading = page.slug === "apple-watch-bands" ? "Open Apple Watch Band Product Pages" : "Open BOORUI Product Detail Pages";
+  const eyebrow =
+    page.slug === "apple-watch-bands"
+      ? `<span class="eyebrow">APPLE WATCH PRODUCT SERIES</span>`
+      : `<span class="eyebrow">UPLOADED PRODUCT PAGES</span>`;
   const intro =
     page.slug === "apple-watch-bands"
       ? "Review uploaded BOORUI Apple Watch compatible products by material, style and buyer use, then open the detail page for sizing, packaging direction and quotation discussion."
-      : "Open individual product pages for gallery review, specifications, packaging options and direct inquiry.";
+      : "Review listed products by device fit, material, buyer use and packaging direction before inquiry.";
+  const sectionClass = `section related-products-section${page.slug === "apple-watch-bands" ? " apple-series-section" : " products-hub-showcase"}`;
+  const sectionId = page.slug === "apple-watch-bands" ? ` id="product-series"` : ` id="product-pages"`;
+  const gridClass = `hot-product-grid${page.slug === "apple-watch-bands" ? " apple-series-grid" : " products-hub-grid"}`;
 
   return `
-      <section class="section related-products-section${page.slug === "apple-watch-bands" ? " apple-series-section\" id=\"product-series" : ""}">
+      <section class="${sectionClass}"${sectionId}>
         <div class="section-head">
           ${eyebrow}
           <h2>${heading}</h2>
           <p>${intro}</p>
         </div>
-        <div class="hot-product-grid${page.slug === "apple-watch-bands" ? " apple-series-grid" : ""}">
+        <div class="${gridClass}">
           ${visibleProducts
             .map(
-              (item) => `<article><img src="${prefix}${item.image}" alt="${item.title} product page for BOORUI B2B buyers" />${page.slug === "apple-watch-bands" ? `<span class="series-tag">${item.title.includes("Jewelry") ? "Jewelry / Gift" : item.title.includes("Milanese") ? "Metal / Milanese" : item.title.includes("NN39") ? "Stainless Steel" : "Silicone / Printed"}</span>` : ""}<h3>${item.title}</h3><p>${item.text}</p><a href="${prefix}${item.href}">${page.slug === "apple-watch-bands" ? "Open Product Page" : "View Product"}</a></article>`,
+              (item) => `<article><img src="${prefix}${item.image}" alt="${item.title} product page for BOORUI B2B buyers" /><span class="series-tag">${item.tag}</span><h3>${item.title}</h3><p>${item.text}</p><a href="${prefix}${item.href}">Open Product Page</a></article>`,
             )
             .join("")}
         </div>
@@ -1146,6 +1192,7 @@ function pageHtml(page) {
   const download = page.download
     ? `<a class="button primary" href="${relative(page.slug)}assets/BOORUI_2026_English_Product_Brochure.pdf" download data-i18n="button.catalog">Download Catalog</a>`
     : "";
+  const productRangeHref = page.slug === "products" ? "#product-pages" : `${relative(page.slug)}products/`;
 
   return `<!doctype html>
 <html lang="en" dir="ltr">
@@ -1176,7 +1223,7 @@ function pageHtml(page) {
       </a>
       <nav class="nav mega-nav" aria-label="Main navigation">
         <div class="nav-item has-mega">
-          <a class="nav-trigger" href="${relative(page.slug)}index.html#products" data-i18n="nav.products">Products</a>
+          <a class="nav-trigger" href="${relative(page.slug)}products/" data-i18n="nav.products">Products</a>
           <div class="mega-menu" aria-label="B2B product navigation">
             <div class="mega-feature">
               <img src="${relative(page.slug)}assets/collections/apple-bands.jpg" alt="BOORUI Apple Watch band sourcing collection" />
@@ -1257,7 +1304,7 @@ ${languageSwitcher()}
           <div class="hero-actions">
             <a class="button primary" href="${relative(page.slug)}index.html#inquiry" data-i18n="button.quote">Get a Quote</a>
             ${download}
-            <a class="button secondary" href="${relative(page.slug)}index.html#products" data-i18n="button.products">View Product Range</a>
+            <a class="button secondary" href="${productRangeHref}" data-i18n="button.products">View Product Range</a>
           </div>
         </div>
         <div class="hero-visual subpage-hero-media" aria-label="BOORUI product visual">
@@ -1269,7 +1316,7 @@ ${languageSwitcher()}
       </section>
       ${productDetailShowcase(page)}
       ${wholesaleSystemSection(page)}
-      <section class="section">
+      ${page.slug === "products" ? "" : `<section class="section">
         <div class="section-head">
           <h2>${fit.title}</h2>
           <p>${fit.intro}</p>
@@ -1277,7 +1324,7 @@ ${languageSwitcher()}
         <div class="subpage-product-grid">
           ${fit.cards.map(([title, text]) => `<article><span>Product Fit</span><h3>${title}</h3><p>${text}</p></article>`).join("")}
         </div>
-      </section>
+      </section>`}
       ${procurementSpecs(page)}
       ${seoIntroSection(page)}
       <section class="section subpage-advantages">

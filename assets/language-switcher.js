@@ -69,7 +69,7 @@
 
   function initProductNavLinks() {
     document.querySelectorAll('a[data-i18n="nav.products"]').forEach((anchor) => {
-      anchor.setAttribute("href", `${siteRoot}products/index.html#product-pages`);
+      anchor.setAttribute("href", `${siteRoot}products/index.html`);
     });
   }
 
